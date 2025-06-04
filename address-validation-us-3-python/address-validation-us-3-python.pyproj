@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1ff7e5ec-37b2-419c-a031-364169e42dd5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>address_validation_us_3_python.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="address_validation_us_3_python.py" />
     <Compile Include="REST\get_best_matches.py" />
     <Compile Include="REST\get_secondary_numbers.py" />
   </ItemGroup>
