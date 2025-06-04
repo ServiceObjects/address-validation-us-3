@@ -22,6 +22,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="address_validation_us_3_python.py" />
+    <Compile Include="REST\get_best_matches.py" />
+    <Compile Include="REST\get_secondary_numbers.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="REST\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="REST\readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
