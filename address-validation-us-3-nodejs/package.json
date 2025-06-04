@@ -1,0 +1,14 @@
+{
+    "name": "address-validation-us-3-nodejs",
+    "version": "0.0.0",
+    "description": "address-validation-us-3-nodejs",
+    "main": "getBestMatches.js",
+    "author": {
+        "name": ""
+    },
+    "devDependencies": {
+        "eslint": "^8.21.0"
+    },
+    "eslintConfig": {
+    }
+}
