@@ -8,7 +8,7 @@ AV3 can provide instant address verification and correction to websites or enhan
 
 GetBestMatches: Returns parsed and validated address elements including Delivery Point Validation (DPV), Residential Delivery Indicator (RDI), and Suite data. GetBestMatches will attempt to validate the input address against a CASS approved engine, and make corrections where possible. Multiple address candidates may be returned if a definitive decision cannot be made by the service.
 
-## Usage
+## Library Usage
 
 ```
 // (1) Instantiate the service wrapper
@@ -88,7 +88,7 @@ catch (Exception ex)
 Takes a single line of address information as the input and returns the best candidate with parsed and corrected address information. This operation may return multiple address candidates if a single best match cannot be determined.
 
 
-## Usage
+## Library Usage
 
 ```
  // (1) Instantiate the service wrapper
@@ -159,7 +159,7 @@ catch (Exception ex)
 
 This operation will validate that a given city-state-zip validate together properly.  The inputs can be marginally incorrect, and this operation will correct them.  For instance, a combination with a valid city, slightly misspelled state, and totally incorrect zip code will be corrected to a valid city – state – zip code combination.
 
-## Usage
+## Library Usage
 
 ```
 // (1) Instantiate the service wrapper
@@ -217,7 +217,7 @@ catch (Exception ex)
 
 Returns parsed and validated address elements along with a list of potential secondary numbers for a given input address. The operation can be leveraged in conjunction with the GetBestMatches/GetBestMatchesSingleLine operation to find secondary numbers for input data that has either missing or incorrect unit information.
 
-## Usage
+## Library Usage
 
 ```
 // (1) Instantiate the service wrapper

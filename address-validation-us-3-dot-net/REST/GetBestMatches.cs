@@ -29,6 +29,8 @@ namespace address_validation_us_3_dot_net.REST
             // Fallback on error payload in live mode
             if (input.IsLive && !IsValid(response))
             {
+                //Use querystring parameters so missing/options fields don't break
+                //the URL as path parameters would.
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 var fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;
@@ -44,6 +46,8 @@ namespace address_validation_us_3_dot_net.REST
         /// <returns>Deserialized <see cref="GBMResponse"/>.</returns>
         public static async Task<GBMResponse> InvokeAsync(GetBestMatchesInput input)
         {
+            //Use query string parameters so missing/options fields don't break
+            //the URL as path parameters would.
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
             var response = await Helper.HttpGetAsync<GBMResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
 
@@ -56,18 +60,6 @@ namespace address_validation_us_3_dot_net.REST
 
             return response;
         }
-
-        public record GetBestMatchesInput(
-                                            string BusinessName,
-                                            string Address,
-                                            string Address2,
-                                            string City,
-                                            string State,
-                                            string PostalCode,
-                                            string LicenseKey,
-                                            bool IsLive,
-                                            int TimeoutSeconds = 15
-        );
 
         // Build the full request URL, including URL-encoded query string
         private static string BuildUrl(GetBestMatchesInput input, string baseUrl)
@@ -83,5 +75,29 @@ namespace address_validation_us_3_dot_net.REST
         }
 
         private static bool IsValid(GBMResponse response) => response?.Error == null || response.Error.TypeCode != "3";
+
+        /// <summary>
+        /// Input parameters for the GetBestMatchesSingleLine operation.
+        /// </summary>
+        /// <param name="BusinessName">Company name to assist suite parsing (e.g., "Acme Corp"). - Optional</param>
+        /// <param name="Address">Address line 1 (e.g., "123 Main St") - Required.</param>
+        /// <param name="Address2">Address line 2 - Optional</param>
+        /// <param name="City">City - Required when PostalCode is missing.</param>
+        /// <param name="State">State - Required when PostalCode is missing.</param>
+        /// <param name="PostalCode">PostalCode - Required when City and state are missing.</param>
+        /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
+        /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
+        /// <param name="TimeoutSeconds">Request timeout in seconds (default: 15).</param>
+        public record GetBestMatchesInput(
+                                            string BusinessName = "",
+                                            string Address = "",
+                                            string Address2 = "",
+                                            string City = "",
+                                            string State = "",
+                                            string PostalCode = "",
+                                            string LicenseKey = "",
+                                            bool IsLive = true,
+                                            int TimeoutSeconds = 15
+        );
     }
 }

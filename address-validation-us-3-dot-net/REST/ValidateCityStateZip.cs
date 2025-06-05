@@ -47,6 +47,8 @@ namespace address_validation_us_3_dot_net.REST
         /// <returns>Task resolving to deserialized <see cref="CSZResponse"/>.</returns>
         public static async Task<CSZResponse> InvokeAsync(ValidateCityStateZipInput input)
         {
+            //Use query string parameters so missing/options fields don't break
+            //the URL as path parameters would.
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
             var response = await Helper.HttpGetAsync<CSZResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
 
@@ -59,9 +61,7 @@ namespace address_validation_us_3_dot_net.REST
             return response;
         }
 
-        /// <summary>
-        /// Build the request URL for CityStateZipInfo, encoding path segments safely.
-        /// </summary>
+        // Build the full request URL, including URL-encoded query string
         private static string BuildUrl(ValidateCityStateZipInput input, string baseUrl)
         {
             // Ensure non-empty values for path segments
@@ -83,18 +83,18 @@ namespace address_validation_us_3_dot_net.REST
     /// <summary>
     /// Input parameters for the ValidateCityStateZip operation.
     /// </summary>
-    /// <param name="City">City name to validate.</param>
-    /// <param name="State">State code or name to validate.</param>
-    /// <param name="Zip">ZIP code to validate.</param>
-    /// <param name="LicenseKey">Service Objects AV3 license key.</param>
-    /// <param name="IsLive">True for production+backup, false for trial only.</param>
+    /// <param name="City">City name to validate.- Required when PostalCode is missing.</param>
+    /// <param name="State">State code or name to validate. - Required</param>
+    /// <param name="Zip">ZIP code to validate. - Required when City and state are missing.</param>
+    /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
+    /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
     /// <param name="TimeoutSeconds">Timeout in seconds for HTTP calls (default 15).</param>
     public record ValidateCityStateZipInput(
-        string City,
-        string State,
-        string Zip,
-        string LicenseKey,
-        bool IsLive,
+        string City = "",
+        string State = "",
+        string Zip = "",
+        string LicenseKey = "",
+        bool IsLive = true,
         int TimeoutSeconds = 15
     );
 }

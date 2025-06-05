@@ -44,6 +44,8 @@ namespace address_validation_us_3_dot_net.REST
         /// <returns>Task resolving to deserialized <see cref="GBMResponse"/>.</returns>
         public static async Task<GBMResponse> InvokeAsync(GetBestMatchesSingleLineInput input)
         {
+            //Use query string parameters so missing/options fields don't break
+            //the URL as path parameters would.
             var baseUrl = input.IsLive ? LiveBaseUrl : TrialBaseUrl;
             var url = BuildUrl(input, baseUrl);
 
@@ -57,7 +59,7 @@ namespace address_validation_us_3_dot_net.REST
             return response;
         }
 
-        // Build the full request URL for the single-line match operation.
+        // Build the full request URL for the single-line match operation, url encoded query string.
         private static string BuildUrl(GetBestMatchesSingleLineInput input, string baseUrl)
         {
             var qb = $"GetBestMatchesSingleLineJson?BusinessName={Helper.UrlEncode(input.BusinessName)}" +
@@ -72,16 +74,16 @@ namespace address_validation_us_3_dot_net.REST
     /// <summary>
     /// Input parameters for the GetBestMatchesSingleLine operation.
     /// </summary>
-    /// <param name="BusinessName">Company name to assist suite parsing (e.g., "Acme Corp").</param>
-    /// <param name="Address">Full single-line address to validate (e.g., "123 Main St Anytown CA 90012").</param>
-    /// <param name="LicenseKey">Service Objects AV3 license key.</param>
-    /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only.</param>
+    /// <param name="BusinessName">Company name to assist suite parsing (e.g., "Acme Corp"). - Optional</param>
+    /// <param name="Address">Full single-line address to validate (e.g., "123 Main St Anytown CA 90012"). - Required</param>
+    /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
+    /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
     /// <param name="TimeoutSeconds">Request timeout in seconds (default: 15).</param>
     public record GetBestMatchesSingleLineInput(
-        string BusinessName,
-        string Address,
-        string LicenseKey,
-        bool IsLive,
+        string BusinessName = "",
+        string Address = "",
+        string LicenseKey = "",
+        bool IsLive = true,
         int TimeoutSeconds = 15
     );
 }
