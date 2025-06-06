@@ -12,7 +12,7 @@ GetBestMatches: Returns parsed and validated address elements including Delivery
 
 ## GetBestMatches Request URLs (Query String Parameters)
 
-#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.**
 
 
 ### JSON
@@ -91,7 +91,7 @@ Takes a single line of address information as the input and returns the best can
 
 ## GetBestMatchesSingleLine Request URLs (Query String Parameters)
 
-#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.**
 
 ### JSON
 #### Trial
@@ -152,7 +152,7 @@ This operation will validate that a given city-state-zip validate together prope
 
 ## ValidateCityStateZip Request URLs (Query String Parameters)
 
-#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.**
 
 ### JSON
 #### Trial
@@ -214,7 +214,7 @@ Returns parsed and validated address elements along with a list of potential sec
 
 ## GetSecondaryNumbers Request URLs (Query String Parameters)
 
-#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.**
 
 ### JSON
 #### Trial
