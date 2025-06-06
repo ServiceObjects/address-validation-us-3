@@ -12,7 +12,7 @@ GetBestMatches: Returns parsed and validated address elements including Delivery
 
 ## GetBestMatches Request URLs (Query String Parameters)
 
-#### *Important - Use query atring parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
 
 
 ### JSON
@@ -90,6 +90,9 @@ else
 Takes a single line of address information as the input and returns the best candidate with parsed and corrected address information. This operation may return multiple address candidates if a single best match cannot be determined.
 
 ## GetBestMatchesSingleLine Request URLs (Query String Parameters)
+
+#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+
 ### JSON
 #### Trial
 
@@ -148,6 +151,9 @@ else
 This operation will validate that a given city-state-zip validate together properly.  The inputs can be marginally incorrect, and this operation will correct them.  For instance, a combination with a valid city, slightly misspelled state, and totally incorrect zip code will be corrected to a valid city – state – zip code combination.
 
 ## ValidateCityStateZip Request URLs (Query String Parameters)
+
+#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+
 ### JSON
 #### Trial
 
@@ -207,6 +213,9 @@ else
 Returns parsed and validated address elements along with a list of potential secondary numbers for a given input address. The operation can be leveraged in conjunction with the GetBestMatches operation to find secondary numbers for input data that has either missing or incorrect unit information.
 
 ## GetSecondaryNumbers Request URLs (Query String Parameters)
+
+#### *Important - Use query string parameters for all inputs.  Do not use path parameterssince it will lead to errors due to optional parameters and special character issues.**
+
 ### JSON
 #### Trial
 
