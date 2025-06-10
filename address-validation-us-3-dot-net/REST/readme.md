@@ -56,7 +56,9 @@ https://sws.serviceobjects.com/AV3/api.svc/GetBestMatches?BusinessName=Service+O
 // Though the API will run in any scenario, not adhering to these
 // rules can result in error responses.
 
-var gbmInput = new GetBestMatchesInput(
+using address_validation_us_3_dot_net.REST;
+
+var gbmInput = new GetBestMatchesClient.GetBestMatchesInput(
     BusinessName: "Acme Corp",
     Address:      "123 Main St",
     Address2:     "Suite 200",
@@ -126,7 +128,9 @@ https://sws.serviceobjects.com/AV3/api.svc/GetBestMatchesSingleLine?BusinessName
 // Though the API will run in any scenario, not adhering to these
 // rules can result in error responses.
 
-var singleInput = new GetBestMatchesSingleLineInput(
+using address_validation_us_3_dot_net.REST;
+
+var singleInput = new GetBestMatchesSingleLineClient.GetBestMatchesSingleLineInput(
     BusinessName: "Acme Corp",
     Address:      "123 Main St, Los Angeles, CA 90012",
     LicenseKey:   "YOUR_LICENSE_KEY",
@@ -187,7 +191,9 @@ https://sws.serviceobjects.com/AV3/api.svc/ValidateCityStateZip?City=Asbury+Park
 // Though the API will run in any scenario, not adhering to these
 // rules can result in error responses.
 
-var cszInput = new ValidateCityStateZipInput(
+using address_validation_us_3_dot_net.REST;
+
+var cszInput = new ValidateCityStateZipClient.ValidateCityStateZipInput(
     City:           "Los Angles",   // slightly misspelled
     State:          "Calif.",
     Zip:            "9001",         // missing the final digit
@@ -255,7 +261,9 @@ https://sws.serviceobjects.com/AV3/api.svc/GetSecondaryNumbers?Address=27+E+Cota
 // Though the API will run in any scenario, not adhering to these
 // rules can result in error responses.
 
-var secInput = new GetSecondaryNumbersInput(
+using address_validation_us_3_dot_net.REST;
+
+var secInput = new GetSecondaryNumbersClient.GetSecondaryNumbersInput(
     Address:       "123 Main St",
     City:          "Los Angeles",
     State:         "CA",
