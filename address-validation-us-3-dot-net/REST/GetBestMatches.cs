@@ -24,7 +24,7 @@ namespace address_validation_us_3_dot_net.REST
         public static GBMResponse Invoke(GetBestMatchesInput input)
         {
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = Helper.HttpGet<GBMResponse>(url, input.TimeoutSeconds);
+            GBMResponse response = Helper.HttpGet<GBMResponse>(url, input.TimeoutSeconds);
 
             // Fallback on error payload in live mode
             if (input.IsLive && !IsValid(response))
@@ -32,7 +32,7 @@ namespace address_validation_us_3_dot_net.REST
                 //Use querystring parameters so missing/options fields don't break
                 //the URL as path parameters would.
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
+                GBMResponse fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
 
@@ -49,12 +49,12 @@ namespace address_validation_us_3_dot_net.REST
             //Use query string parameters so missing/options fields don't break
             //the URL as path parameters would.
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = await Helper.HttpGetAsync<GBMResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
+            GBMResponse response = await Helper.HttpGetAsync<GBMResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
 
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallbackResponse = await Helper.HttpGetAsync<GBMResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
+                GBMResponse fallbackResponse = await Helper.HttpGetAsync<GBMResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
 
