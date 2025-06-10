@@ -9,6 +9,7 @@ namespace address_validation_us_3_dot_net.REST
     /// <summary>
     /// Response object for capturing the reponse from the API for GetBestMatches
     /// </summary>
+    [DataContract]
     public class GBMResponse : IAV3Response
     {
         [DataMember(Name = "Addresses")]
