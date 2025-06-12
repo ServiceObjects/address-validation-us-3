@@ -17,11 +17,11 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <summary>
         /// Reads configuration keys and initializes URLs/timeout/IsLive.
         /// </summary>
-        public GetBestMatchesSingleLineValidation()
+        public GetBestMatchesSingleLineValidation(bool IsLive)
         {
             // Read timeout (milliseconds) and IsLive flag
             _timeoutMs = 10000;
-            _isLive = false;
+            _isLive = IsLive;
 
             // Depending on IsLive, pick the correct appSettings keys
             if (_isLive)

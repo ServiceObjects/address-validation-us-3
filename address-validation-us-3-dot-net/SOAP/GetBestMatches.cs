@@ -7,7 +7,7 @@ namespace address_validation_us_3_dot_net.SOAP
     /// A simple wrapper class to call the AV3 GetBestMatches SOAP 
     /// operation endpoint (with primary/backup failover and an “IsLive” toggle).
     /// </summary>
-    public class BestMatchesValidation
+    public class GetBestMatchesValidation
     {
         private readonly string _primaryUrl;
         private readonly string _backupUrl;
@@ -17,11 +17,11 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <summary>
         /// Reads configuration keys and initializes URLs/timeout/IsLive.
         /// </summary>
-        public BestMatchesValidation()
+        public GetBestMatchesValidation(bool IsLive)
         {
             // Read timeout (milliseconds) and IsLive flag
             _timeoutMs = 10000;
-            _isLive = false;
+            _isLive = IsLive;
 
             // Depending on IsLive, pick the correct appSettings keys
             if (_isLive)
@@ -76,7 +76,7 @@ namespace address_validation_us_3_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                var response = clientPrimary.GetBestMatchesAsync(
+                BestMatchesResponse response = clientPrimary.GetBestMatchesAsync(
                     businessName,
                     address1,
                     address2,

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using static address_validation_us_3_dot_net.REST.GetSecondaryNumbersClient;
 
 namespace address_validation_us_3_dot_net.REST
 {
@@ -28,13 +25,13 @@ namespace address_validation_us_3_dot_net.REST
         public static CSZResponse Invoke(ValidateCityStateZipInput input)
         {
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = Helper.HttpGet<CSZResponse>(url, input.TimeoutSeconds);
+            CSZResponse response = Helper.HttpGet<CSZResponse>(url, input.TimeoutSeconds);
 
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallback = Helper.HttpGet<CSZResponse>(fallbackUrl, input.TimeoutSeconds);
-                return IsValid(fallback) ? fallback : response;
+                CSZResponse fallbackResponse = Helper.HttpGet<CSZResponse>(fallbackUrl, input.TimeoutSeconds);
+                return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
             return response;
         }
@@ -50,51 +47,48 @@ namespace address_validation_us_3_dot_net.REST
             //Use query string parameters so missing/options fields don't break
             //the URL as path parameters would.
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = await Helper.HttpGetAsync<CSZResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
+            CSZResponse response = await Helper.HttpGetAsync<CSZResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
 
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallback = await Helper.HttpGetAsync<CSZResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
-                return IsValid(fallback) ? fallback : response;
+                CSZResponse fallbackResponse = await Helper.HttpGetAsync<CSZResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
+                return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
             return response;
         }
 
-        // Build the full request URL, including URL-encoded query string
+        // Build the full request URL with URL-encoded query string
         private static string BuildUrl(ValidateCityStateZipInput input, string baseUrl)
         {
-            // Ensure non-empty values for path segments
-            string city = string.IsNullOrWhiteSpace(input.City) ? " " : Helper.UrlEncode(input.City);
-            string state = string.IsNullOrWhiteSpace(input.State) ? " " : Helper.UrlEncode(input.State);
-            string zip = string.IsNullOrWhiteSpace(input.Zip) ? " " : Helper.UrlEncode(input.Zip);
-            string license = Helper.UrlEncode(input.LicenseKey);
-
-            // Construct path-based query
-            return $"{baseUrl}CityStateZipInfo/{city}/{state}/{zip}/{license}?format=json";
+            var qs = $"ValidateCityStateZipJson?City={Helper.UrlEncode(input.City)}" +
+                     $"&State={Helper.UrlEncode(input.State)}" +
+                     $"&PostalCode={Helper.UrlEncode(input.Zip)}" +
+                     $"&LicenseKey={Helper.UrlEncode(input.LicenseKey)}";
+            return baseUrl + qs;
         }
 
         /// <summary>
         /// Simple validation: response must have no error and at least one corrected combo.
         /// </summary>
         private static bool IsValid(CSZResponse response) => response?.Error == null || response.Error.TypeCode != "3";
-    }
 
-    /// <summary>
-    /// Input parameters for the ValidateCityStateZip operation.
-    /// </summary>
-    /// <param name="City">City name to validate.- Required when PostalCode is missing.</param>
-    /// <param name="State">State code or name to validate. - Required</param>
-    /// <param name="Zip">ZIP code to validate. - Required when City and state are missing.</param>
-    /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
-    /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
-    /// <param name="TimeoutSeconds">Timeout in seconds for HTTP calls (default 15).</param>
-    public record ValidateCityStateZipInput(
-        string City = "",
-        string State = "",
-        string Zip = "",
-        string LicenseKey = "",
-        bool IsLive = true,
-        int TimeoutSeconds = 15
-    );
+        /// <summary>
+        /// Input parameters for the ValidateCityStateZip operation.
+        /// </summary>
+        /// <param name="City">City name to validate.- Required when PostalCode is missing.</param>
+        /// <param name="State">State code or name to validate. - Required</param>
+        /// <param name="Zip">ZIP code to validate. - Required when City and state are missing.</param>
+        /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
+        /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
+        /// <param name="TimeoutSeconds">Timeout in seconds for HTTP calls (default 15).</param>
+        public record ValidateCityStateZipInput(
+            string City = "",
+            string State = "",
+            string Zip = "",
+            string LicenseKey = "",
+            bool IsLive = true,
+            int TimeoutSeconds = 15
+        );
+    }
 }

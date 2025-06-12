@@ -27,12 +27,12 @@ namespace address_validation_us_3_dot_net.REST
             var baseUrl = input.IsLive ? LiveBaseUrl : TrialBaseUrl;
             var url = BuildUrl(input, baseUrl);
 
-            var response = Helper.HttpGet<GBMResponse>(url, input.TimeoutSeconds);
+            GBMResponse response = Helper.HttpGet<GBMResponse>(url, input.TimeoutSeconds);
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallback = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
-                return IsValid(fallback) ? fallback : response;
+                GBMResponse fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
+                return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
             return response;
         }
@@ -49,12 +49,12 @@ namespace address_validation_us_3_dot_net.REST
             var baseUrl = input.IsLive ? LiveBaseUrl : TrialBaseUrl;
             var url = BuildUrl(input, baseUrl);
 
-            var response = await Helper.HttpGetAsync<GBMResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
+            GBMResponse response = await Helper.HttpGetAsync<GBMResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallback = await Helper.HttpGetAsync<GBMResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
-                return IsValid(fallback) ? fallback : response;
+                GBMResponse fallbackResponse = await Helper.HttpGetAsync<GBMResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
+                return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
             return response;
         }
@@ -69,21 +69,21 @@ namespace address_validation_us_3_dot_net.REST
         }
 
         private static bool IsValid(GBMResponse response) => response?.Error == null || response.Error.TypeCode != "3";
-    }
 
-    /// <summary>
-    /// Input parameters for the GetBestMatchesSingleLine operation.
-    /// </summary>
-    /// <param name="BusinessName">Company name to assist suite parsing (e.g., "Acme Corp"). - Optional</param>
-    /// <param name="Address">Full single-line address to validate (e.g., "123 Main St Anytown CA 90012"). - Required</param>
-    /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
-    /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
-    /// <param name="TimeoutSeconds">Request timeout in seconds (default: 15).</param>
-    public record GetBestMatchesSingleLineInput(
-        string BusinessName = "",
-        string Address = "",
-        string LicenseKey = "",
-        bool IsLive = true,
-        int TimeoutSeconds = 15
-    );
+        /// <summary>
+        /// Input parameters for the GetBestMatchesSingleLine operation.
+        /// </summary>
+        /// <param name="BusinessName">Company name to assist suite parsing (e.g., "Acme Corp"). - Optional</param>
+        /// <param name="Address">Full single-line address to validate (e.g., "123 Main St Anytown CA 90012"). - Required</param>
+        /// <param name="LicenseKey">Service Objects AV3 license key. - Required</param>
+        /// <param name="IsLive">True for live (production+backup) endpoints; false for trial only. - Required</param>
+        /// <param name="TimeoutSeconds">Request timeout in seconds (default: 15).</param>
+        public record GetBestMatchesSingleLineInput(
+            string BusinessName = "",
+            string Address = "",
+            string LicenseKey = "",
+            bool IsLive = true,
+            int TimeoutSeconds = 15
+        );
+    }
 }

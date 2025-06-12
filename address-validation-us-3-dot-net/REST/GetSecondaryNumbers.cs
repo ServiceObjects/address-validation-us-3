@@ -28,12 +28,12 @@ namespace address_validation_us_3_dot_net.REST
         public static GSNResponse Invoke(GetSecondaryNumbersInput input)
         {
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = Helper.HttpGet<GSNResponse>(url, input.TimeoutSeconds);
+            GSNResponse response = Helper.HttpGet<GSNResponse>(url, input.TimeoutSeconds);
 
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallbackResponse = Helper.HttpGet<GSNResponse>(fallbackUrl, input.TimeoutSeconds);
+                GSNResponse fallbackResponse = Helper.HttpGet<GSNResponse>(fallbackUrl, input.TimeoutSeconds);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
 
@@ -48,12 +48,12 @@ namespace address_validation_us_3_dot_net.REST
         public static async Task<GSNResponse> InvokeAsync(GetSecondaryNumbersInput input)
         {
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
-            var response = await Helper.HttpGetAsync<GSNResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
+            GSNResponse response = await Helper.HttpGetAsync<GSNResponse>(url, input.TimeoutSeconds).ConfigureAwait(false);
 
             if (input.IsLive && !IsValid(response))
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
-                var fallbackResponse = await Helper.HttpGetAsync<GSNResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
+                GSNResponse fallbackResponse = await Helper.HttpGetAsync<GSNResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;
             }
 
