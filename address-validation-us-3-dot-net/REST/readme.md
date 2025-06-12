@@ -10,29 +10,6 @@ AV3 can provide instant address verification and correction to websites or enhan
 
 GetBestMatches: Returns parsed and validated address elements including Delivery Point Validation (DPV), Residential Delivery Indicator (RDI), and Suite data. GetBestMatches will attempt to validate the input address against a CASS approved engine, and make corrections where possible. Multiple address candidates may be returned if a definitive decision cannot be made by the service.
 
-## GetBestMatches Request URLs (Query String Parameters)
-
-#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.*
-
-
-### JSON
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetBestMatchesJson?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D&Address2=&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetBestMatchesJson?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D&Address2=&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-### XML
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetBestMatches?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D&Address2=&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetBestMatches?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D&Address2=&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
 ## Library Usage
 
 ```
@@ -91,28 +68,6 @@ else
 
 Takes a single line of address information as the input and returns the best candidate with parsed and corrected address information. This operation may return multiple address candidates if a single best match cannot be determined.
 
-## GetBestMatchesSingleLine Request URLs (Query String Parameters)
-
-#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.*
-
-### JSON
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetBestMatchesSingleLineJson?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D+Santa+Barbara+CA+93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetBestMatchesSingleLineJson?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D+Santa+Barbara+CA+93101&LicenseKey={LicenseKey}
-
-### XML
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetBestMatchesSingleLine?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D+Santa+Barbara+CA+93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetBestMatchesSingleLine?BusinessName=Service+Objects&Address=136+W+Canon+Perdido+St%2C+Suite+D+Santa+Barbara+CA+93101&LicenseKey={LicenseKey}
-
 ## Library Usage
 
 ```
@@ -153,28 +108,6 @@ else
 # AV3 - ValidateCityStateZip
 
 This operation will validate that a given city-state-zip validate together properly.  The inputs can be marginally incorrect, and this operation will correct them.  For instance, a combination with a valid city, slightly misspelled state, and totally incorrect zip code will be corrected to a valid city – state – zip code combination.
-
-## ValidateCityStateZip Request URLs (Query String Parameters)
-
-#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.*
-
-### JSON
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/ValidateCityStateZipJson?City=Asbury+Park&State=NJ&Zip=07712&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/ValidateCityStateZipJson?City=Asbury+Park&State=NJ&Zip=07712&LicenseKey={LicenseKey}
-
-### XML
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/ValidateCityStateZip?City=Asbury+Park&State=NJ&Zip=07712&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/ValidateCityStateZip?City=Asbury+Park&State=NJ&Zip=07712&LicenseKey={LicenseKey}
 
 ## Library Usage
 
@@ -217,28 +150,6 @@ else
 # AV3 - GetSecondaryNumbers
 
 Returns parsed and validated address elements along with a list of potential secondary numbers for a given input address. The operation can be leveraged in conjunction with the GetBestMatches operation to find secondary numbers for input data that has either missing or incorrect unit information.
-
-## GetSecondaryNumbers Request URLs (Query String Parameters)
-
-#### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.*
-
-### JSON
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetSecondaryNumbersJson?Address=27+E+Cota+St&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetSecondaryNumbersJson?Address=27+E+Cota+St&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-### XML
-#### Trial
-
-https://trial.serviceobjects.com/AV3/api.svc/GetSecondaryNumbers?Address=27+E+Cota+St&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
-
-#### Production
-
-https://sws.serviceobjects.com/AV3/api.svc/GetSecondaryNumbers?Address=27+E+Cota+St&City=Santa+Barbara&State=CA&PostalCode=93101&LicenseKey={LicenseKey}
 
 ## Library Usage
 
