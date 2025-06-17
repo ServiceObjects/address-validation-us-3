@@ -17,7 +17,7 @@ GetBestMatches: Returns parsed and validated address elements including Delivery
 
 ## GetBestMatches Request URLs (Query String Parameters)
 
->[!WARNING]
+>[!CAUTION]
 >### *Important - Use query string parameters for all inputs.  Do not use path parameters since it will lead to errors due to optional parameters and special character issues.*
 
 
