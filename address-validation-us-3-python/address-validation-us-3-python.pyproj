@@ -32,7 +32,6 @@
     <Folder Include="REST\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="readme.md" />
     <Content Include="REST\readme.md" />
     <Content Include="SOAP\readme.md" />
   </ItemGroup>
