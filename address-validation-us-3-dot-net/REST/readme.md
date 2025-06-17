@@ -6,14 +6,18 @@ DOTS Address Validation 3 US (“AV3”) is V3 version of our Address Validation
 
 AV3 can provide instant address verification and correction to websites or enhancement to contact lists.  However, the output from AV3 must be considered carefully before the existence or non-existence of an address is decided.
 
+## [Service Objects Website](https://serviceobjects.com)
+
 # AV3 - GetBestMatches
 
-GetBestMatches: Returns parsed and validated address elements including Delivery Point Validation (DPV), Residential Delivery Indicator (RDI), and Suite data. GetBestMatches will attempt to validate the input address against a CASS approved engine, and make corrections where possible. Multiple address candidates may be returned if a definitive decision cannot be made by the service.
+Returns parsed and validated address elements including Delivery Point Validation (DPV), Residential Delivery Indicator (RDI), and Suite data. GetBestMatches will attempt to validate the input address against a CASS approved engine, and make corrections where possible. Multiple address addresss may be returned if a definitive decision cannot be made by the service.
+
+### [GetBestMatches Developer Guide/Documentation](https://www.serviceobjects.com/docs/dots-address-validation-us-3/av3-operations/av3-getbestmatches-recommended/)
 
 ## Library Usage
 
 ```
-// 1. Build the input
+// 1. Build the input.
 //
 // Required fields:
 //              Address
@@ -36,26 +40,26 @@ GetBestMatches: Returns parsed and validated address elements including Delivery
 using address_validation_us_3_dot_net.REST;
 
 var gbmInput = new GetBestMatchesClient.GetBestMatchesInput(
-    BusinessName: "Acme Corp",
-    Address:      "123 Main St",
-    Address2:     "Suite 200",
-    City:         "Los Angeles",
+    BusinessName: "",
+    Address:      "136 West Canon Perdido St",
+    Address2:     "Suite D",
+    City:         "Santa Barbara",
     State:        "CA",
-    PostalCode:   "90012",
+    PostalCode:   "93101",
     LicenseKey:   "YOUR_LICENSE_KEY",
     IsLive:       true,    // production endpoints with fallback
     TimeoutSeconds: 15
 );
 
-// 2. Call the sync Invoke() method
+// 2. Call the sync Invoke() method.
 GBMResponse gbmResult = GetBestMatchesClient.Invoke(gbmInput);
 
-// 3. Inspect results
+// 3. Inspect results.
 if (gbmResult.Error is null)
 {
-    foreach (var candidate in gbmResult.Addresses)
+    foreach (var address in gbmResult.Addresses)
     {
-        Console.WriteLine($"{candidate.ToString()}");
+        Console.WriteLine($"{address.ToString()}");
     }
 }
 else
@@ -66,7 +70,9 @@ else
 
 # AV3 - GetBestMatchesSingleLine
 
-Takes a single line of address information as the input and returns the best candidate with parsed and corrected address information. This operation may return multiple address candidates if a single best match cannot be determined.
+Takes a single line of address information as the input and returns the best address with parsed and corrected address information. This operation may return multiple address addresss if a single best match cannot be determined.
+
+### [GetBestMatchesSingleLine Developer Guide/Documentation](https://www.serviceobjects.com/docs/dots-address-validation-us-3/av3-operations/av3-getbestmatchessingleline/)
 
 ## Library Usage
 
@@ -86,8 +92,8 @@ Takes a single line of address information as the input and returns the best can
 using address_validation_us_3_dot_net.REST;
 
 var singleInput = new GetBestMatchesSingleLineClient.GetBestMatchesSingleLineInput(
-    BusinessName: "Acme Corp",
-    Address:      "123 Main St, Los Angeles, CA 90012",
+    BusinessName: "",
+    Address:      "136 West Canon Perdido St Suite D, Santa Barbara, CA 93101",
     LicenseKey:   "YOUR_LICENSE_KEY",
     IsLive:       true,
     TimeoutSeconds: 15
@@ -109,6 +115,8 @@ else
 
 This operation will validate that a given city-state-zip validate together properly.  The inputs can be marginally incorrect, and this operation will correct them.  For instance, a combination with a valid city, slightly misspelled state, and totally incorrect zip code will be corrected to a valid city – state – zip code combination.
 
+### [ValidateCityStateZip Developer Guide/Documentation](https://www.serviceobjects.com/docs/dots-address-validation-us-3/av3-operations/av3-validatecitystatezip/)
+
 ## Library Usage
 
 ```
@@ -127,9 +135,9 @@ This operation will validate that a given city-state-zip validate together prope
 using address_validation_us_3_dot_net.REST;
 
 var cszInput = new ValidateCityStateZipClient.ValidateCityStateZipInput(
-    City:           "Los Angles",   // slightly misspelled
-    State:          "Calif.",
-    Zip:            "9001",         // missing the final digit
+    City:           "Santa Barbara",
+    State:          "CA",
+    Zip:            "93101",
     LicenseKey:     "YOUR_LICENSE_KEY",
     IsLive:         true,
     TimeoutSeconds: 15
@@ -150,6 +158,8 @@ else
 # AV3 - GetSecondaryNumbers
 
 Returns parsed and validated address elements along with a list of potential secondary numbers for a given input address. The operation can be leveraged in conjunction with the GetBestMatches operation to find secondary numbers for input data that has either missing or incorrect unit information.
+
+### [GetSecondaryNumbers Developer Guide/Documentation](https://www.serviceobjects.com/docs/dots-address-validation-us-3/av3-operations/av3-getsecondarynumbers/)
 
 ## Library Usage
 
@@ -175,10 +185,10 @@ Returns parsed and validated address elements along with a list of potential sec
 using address_validation_us_3_dot_net.REST;
 
 var secInput = new GetSecondaryNumbersClient.GetSecondaryNumbersInput(
-    Address:       "123 Main St",
-    City:          "Los Angeles",
+    Address:       "136 West Canon Perdido St",
+    City:          "Santa Barbara",
     State:         "CA",
-    PostalCode:    "90012",
+    PostalCode:    "93101",
     LicenseKey:    "YOUR_LICENSE_KEY",
     IsLive:        true,
     TimeoutSeconds: 15

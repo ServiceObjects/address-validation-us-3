@@ -1402,12 +1402,12 @@ namespace AV3Service
     public partial class PossibleMatchesResponse : object
     {
         
-        private AV3Service.AddressCandidate[] PossibleMatchesField;
+        private AV3Service.Addressaddress[] PossibleMatchesField;
         
         private AV3Service.AV3Error ErrorField;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public AV3Service.AddressCandidate[] PossibleMatches
+        public AV3Service.Addressaddress[] PossibleMatches
         {
             get
             {
@@ -1435,8 +1435,8 @@ namespace AV3Service
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AddressCandidate", Namespace="http://www.serviceobjects.com")]
-    public partial class AddressCandidate : object
+    [System.Runtime.Serialization.DataContractAttribute(Name="Addressaddress", Namespace="http://www.serviceobjects.com")]
+    public partial class Addressaddress : object
     {
         
         private string AddressField;

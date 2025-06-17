@@ -2,7 +2,7 @@
 Service Objects, Inc.
 
 This module provides the get_best_matches function to validate and standardize US addresses
-using Service Objects’ AV3 API. It handles live/trial endpoints, fallback logic, and JSON parsing.
+using Service Objects AV3 API. It handles live/trial endpoints, fallback logic, and JSON parsing.
 
 Functions:
     get_best_matches(business_name: str,
@@ -14,6 +14,7 @@ Functions:
                      license_key: str,
                      is_live: bool) -> dict:
 '''  
+
 import requests  # HTTP client for RESTful API calls
 
 # Endpoint URLs for AV3 service
@@ -44,7 +45,7 @@ def get_best_matches(business_name: str,
         is_live (bool): True for production endpoints, False for trial URL.
 
     Returns:
-        dict: Parsed JSON response with address candidates or error info.
+        dict: Parsed JSON response with address addresss or error info.
     """
 
     # Prepare query parameters for AV3 API

@@ -11,6 +11,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "address-validation-us-3-nod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "address-validation-us-3-dot-net-examples", "address-validation-us-3-dot-net-examples\address-validation-us-3-dot-net-examples.csproj", "{602F652B-A80C-4285-A862-CE190B6B3364}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "address-validation-us-3-python-examples", "address-validation-us-3-python-examples\address-validation-us-3-python-examples.pyproj", "{C5995960-BEDC-484E-A0FC-C94FF99FBAB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{602F652B-A80C-4285-A862-CE190B6B3364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{602F652B-A80C-4285-A862-CE190B6B3364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{602F652B-A80C-4285-A862-CE190B6B3364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5995960-BEDC-484E-A0FC-C94FF99FBAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5995960-BEDC-484E-A0FC-C94FF99FBAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,7 +29,7 @@ def get_secondary_numbers(address: str,
                           license_key: str,
                           is_live: bool) -> dict:
     """
-    Retrieve candidate secondary numbers (e.g. unit/suite) for a given U.S. address.
+    Retrieve address secondary numbers (e.g. unit/suite) for a given U.S. address.
 
     This operation complements GetBestMatches by returning plausible secondary numbers
     when the input lacks or has incorrect unit information.
@@ -43,7 +43,7 @@ def get_secondary_numbers(address: str,
         is_live (bool): True for production (primary→backup endpoints), False for trial.
 
     Returns:
-        dict: JSON response with a list of secondary number candidates or error info.
+        dict: JSON response with a list of secondary number addresss or error info.
 
     Raises:
         RuntimeError: If the API returns an error payload.

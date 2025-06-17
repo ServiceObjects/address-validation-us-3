@@ -59,7 +59,7 @@ async function httpGetJson(url) {
  */
 
 /**
- * Retrieve standardized address candidates via AV3 GetBestMatches.
+ * Retrieve standardized address addresss via AV3 GetBestMatches.
  * Automatically falls back from production to backup on error TypeCode '3'.
  * @param {GetBestMatchesOptions} opts   Operation settings.
  * @returns {Promise<object>}            Service response JSON.

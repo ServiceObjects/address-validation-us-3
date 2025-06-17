@@ -2,17 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>1ff7e5ec-37b2-419c-a031-364169e42dd5</ProjectGuid>
+    <ProjectGuid>c5995960-bedc-484e-a0fc-c94ff99fbab4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>REST\get_best_matches_rest.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>address-validation-us-3-python</Name>
-    <RootNamespace>address-validation-us-3-python</RootNamespace>
-    <InterpreterId>
-    </InterpreterId>
+    <Name>address-validation-us-3-python-examples</Name>
+    <RootNamespace>address-validation-us-3-python-examples</RootNamespace>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,24 +22,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="REST\get_best_matches_rest.py" />
-    <Compile Include="REST\get_secondary_numbers_rest.py" />
-    <Compile Include="SOAP\get_best_matches_soap.py" />
+    <Compile Include="get_best_matches_rest_sdk_example.py" />
+    <Compile Include="get_best_matches_soap_sdk_example.py" />
+    <Compile Include="main.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SOAP\" />
-    <Folder Include="REST\" />
+    <ProjectReference Include="..\address-validation-us-3-python\address-validation-us-3-python.pyproj">
+      <Name>address-validation-us-3-python</Name>
+      <Project>{1ff7e5ec-37b2-419c-a031-364169e42dd5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="readme.md" />
-    <Content Include="REST\readme.md" />
-    <Content Include="SOAP\readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>env</Id>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
       <Version>3.13</Version>
-      <Description>env (Python 3.13 (64-bit))</Description>
+      <Description>env1 (Python 3.13 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

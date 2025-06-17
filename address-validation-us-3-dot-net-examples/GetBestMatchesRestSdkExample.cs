@@ -37,35 +37,36 @@ namespace address_validation_us_3_dot_net_examples
             {
                 Console.WriteLine("\r\n* Validation *\r\n");
 
-                foreach (Address candidate in response.Addresses)
+                foreach (Address address in response.Addresses)
                 {
-                    Console.WriteLine($"Address 1          : {candidate.Address1}");
-                    Console.WriteLine($"Address 2          : {candidate.Address2}");
-                    Console.WriteLine($"City               : {candidate.City}");
-                    Console.WriteLine($"State              : {candidate.State}");
-                    Console.WriteLine($"ZIP+4              : {candidate.Zip}");
-                    Console.WriteLine($"Is Residential     : {candidate.IsResidential}");
-                    Console.WriteLine($"DPV                : {candidate.DPV}");
-                    Console.WriteLine($"DPV Desc           : {candidate.DPVDesc}");
-                    Console.WriteLine($"DPV Notes          : {candidate.DPVNotes}");
-                    Console.WriteLine($"DPV Notes Desc     : {candidate.DPVNotesDesc}");
-                    Console.WriteLine($"Corrections        : {candidate.Corrections}");
-                    Console.WriteLine($"Corrections Desc   : {candidate.CorrectionsDesc}");
-                    Console.WriteLine($"Barcode Digits     : {candidate.BarcodeDigits}");
-                    Console.WriteLine($"Carrier Route      : {candidate.CarrierRoute}");
-                    Console.WriteLine($"Congress Code      : {candidate.CongressCode}");
-                    Console.WriteLine($"County Code        : {candidate.CountyCode}");
-                    Console.WriteLine($"County Name        : {candidate.CountyName}");
-                    Console.WriteLine($"Fragment House     : {candidate.FragmentHouse}");
-                    Console.WriteLine($"Fragment Pre Dir   : {candidate.FragmentPreDir}");
-                    Console.WriteLine($"Fragment Street    : {candidate.FragmentStreet}");
-                    Console.WriteLine($"Fragment Suffix    : {candidate.FragmentSuffix}");
-                    Console.WriteLine($"Fragment Post Dir  : {candidate.FragmentPostDir}");
-                    Console.WriteLine($"Fragment Unit      : {candidate.FragmentUnit}");
-                    Console.WriteLine($"Fragment           : {candidate.Fragment}");
-                    Console.WriteLine($"Fragment PMB Prefix: {candidate.FragmentPMBPrefix}");
-                    Console.WriteLine($"Fragment PMB Number: {candidate.FragmentPMBNumber}");
+                    Console.WriteLine($"Address 1          : {address.Address1}");
+                    Console.WriteLine($"Address 2          : {address.Address2}");
+                    Console.WriteLine($"City               : {address.City}");
+                    Console.WriteLine($"State              : {address.State}");
+                    Console.WriteLine($"ZIP+4              : {address.Zip}");
+                    Console.WriteLine($"Is Residential     : {address.IsResidential}");
+                    Console.WriteLine($"DPV                : {address.DPV}");
+                    Console.WriteLine($"DPV Desc           : {address.DPVDesc}");
+                    Console.WriteLine($"DPV Notes          : {address.DPVNotes}");
+                    Console.WriteLine($"DPV Notes Desc     : {address.DPVNotesDesc}");
+                    Console.WriteLine($"Corrections        : {address.Corrections}");
+                    Console.WriteLine($"Corrections Desc   : {address.CorrectionsDesc}");
+                    Console.WriteLine($"Barcode Digits     : {address.BarcodeDigits}");
+                    Console.WriteLine($"Carrier Route      : {address.CarrierRoute}");
+                    Console.WriteLine($"Congress Code      : {address.CongressCode}");
+                    Console.WriteLine($"County Code        : {address.CountyCode}");
+                    Console.WriteLine($"County Name        : {address.CountyName}");
+                    Console.WriteLine($"Fragment House     : {address.FragmentHouse}");
+                    Console.WriteLine($"Fragment Pre Dir   : {address.FragmentPreDir}");
+                    Console.WriteLine($"Fragment Street    : {address.FragmentStreet}");
+                    Console.WriteLine($"Fragment Suffix    : {address.FragmentSuffix}");
+                    Console.WriteLine($"Fragment Post Dir  : {address.FragmentPostDir}");
+                    Console.WriteLine($"Fragment Unit      : {address.FragmentUnit}");
+                    Console.WriteLine($"Fragment           : {address.Fragment}");
+                    Console.WriteLine($"Fragment PMB Prefix: {address.FragmentPMBPrefix}");
+                    Console.WriteLine($"Fragment PMB Number: {address.FragmentPMBNumber}");
                 }
+                Console.WriteLine($"Is CASS: {response.IsCASS.ToString()}");
             }
             else
             {

@@ -7,7 +7,7 @@ namespace address_validation_us_3_dot_net.REST
 {
     /// <summary>
     /// Client for the AV3 GetBestMatchesSingleLine operation,
-    /// which validates a single-line address string and returns parsed candidates.
+    /// which validates a single-line address string and returns parsed addresss.
     /// Includes sync/async methods, environment switching, URL encoding, and fallback logic.
     /// </summary>
     public static class GetBestMatchesSingleLineClient
@@ -21,7 +21,7 @@ namespace address_validation_us_3_dot_net.REST
         /// Synchronously invoke the GetBestMatchesSingleLineJson endpoint.
         /// </summary>
         /// <param name="input">Request data container for single-line address lookup.</param>
-        /// <returns>Deserialized <see cref="GBMResponse"/> with address candidates or error.</returns>
+        /// <returns>Deserialized <see cref="GBMResponse"/> with address addresss or error.</returns>
         public static GBMResponse Invoke(GetBestMatchesSingleLineInput input)
         {
             var baseUrl = input.IsLive ? LiveBaseUrl : TrialBaseUrl;
