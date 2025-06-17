@@ -68,7 +68,8 @@ def get_best_matches(business_name: str,
         data = response.json()
 
         # If API returned an error in JSON payload, trigger fallback
-        if 'Error' in data:
+        error = getattr(response, 'Error', None)
+        if not (error is None or getattr(error, 'TypeCode', None) != "3"):
             if is_live:
                 # Try backup URL when live
                 response = requests.get(backup_url, params=params, timeout=10)
@@ -85,7 +86,6 @@ def get_best_matches(business_name: str,
 
     except requests.RequestException as req_exc:
         # Network or HTTP-level error occurred
-        # TODO: Instrument alerting on repeated failures
         if is_live:
             try:
                 # Fallback to backup URL on network failure

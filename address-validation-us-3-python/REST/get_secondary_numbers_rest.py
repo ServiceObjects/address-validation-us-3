@@ -68,9 +68,9 @@ def get_secondary_numbers(address: str,
         data = response.json()
 
         # Application-level error? Fallback if live.
-        if 'Error' in data:
+        error = getattr(response, 'Error', None)
+        if not (error is None or getattr(error, 'TypeCode', None) != "3"):
             if is_live:
-                # TODO: Log fallback attempt
                 response = requests.get(backup_url, params=params, timeout=10)
                 response.raise_for_status()
                 data = response.json()
