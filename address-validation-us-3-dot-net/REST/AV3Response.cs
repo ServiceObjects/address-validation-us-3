@@ -10,7 +10,7 @@ namespace address_validation_us_3_dot_net.REST
     /// Response object for capturing the reponse from the API for GetBestMatches
     /// </summary>
     [DataContract]
-    public class GBMResponse : IAV3Response
+    public class GBMResponse
     {
         [DataMember(Name = "Addresses")]
         public Address[] Addresses { get; set; }
@@ -41,7 +41,7 @@ namespace address_validation_us_3_dot_net.REST
     /// <summary>
     /// Response object for capturing the reponse from the API for GetSecondaryNumbers
     /// </summary>
-    public class GSNResponse : IAV3Response
+    public class GSNResponse
     {
         [DataMember(Name = "Address1")]
         public string Address1 { get; set; }
@@ -87,7 +87,7 @@ namespace address_validation_us_3_dot_net.REST
     /// <summary>
     /// Response object for capturing the reponse from the API for CityStateZip
     /// </summary>
-    public class CSZResponse : IAV3Response
+    public class CSZResponse
     {
         [DataMember(Name = "CityStateZip")]
         public CityStateZip CityStateZip { get; set; }
