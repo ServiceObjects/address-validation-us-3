@@ -52,19 +52,52 @@ var gbmInput = new GetBestMatchesClient.GetBestMatchesInput(
 );
 
 // 2. Call the sync Invoke() method.
-GBMResponse gbmResult = GetBestMatchesClient.Invoke(gbmInput);
+GBMResponse response = GetBestMatchesClient.Invoke(gbmInput);
 
 // 3. Inspect results.
-if (gbmResult.Error is null)
+if (response.Error is null)
 {
-    foreach (var address in gbmResult.Addresses)
+    Console.WriteLine("\r\n* Validation *\r\n");
+
+    foreach (Address address in response.Addresses)
     {
-        Console.WriteLine($"{address.ToString()}");
+        Console.WriteLine($"Address 1          : {address.Address1}");
+        Console.WriteLine($"Address 2          : {address.Address2}");
+        Console.WriteLine($"City               : {address.City}");
+        Console.WriteLine($"State              : {address.State}");
+        Console.WriteLine($"ZIP+4              : {address.Zip}");
+        Console.WriteLine($"Is Residential     : {address.IsResidential}");
+        Console.WriteLine($"DPV                : {address.DPV}");
+        Console.WriteLine($"DPV Desc           : {address.DPVDesc}");
+        Console.WriteLine($"DPV Notes          : {address.DPVNotes}");
+        Console.WriteLine($"DPV Notes Desc     : {address.DPVNotesDesc}");
+        Console.WriteLine($"Corrections        : {address.Corrections}");
+        Console.WriteLine($"Corrections Desc   : {address.CorrectionsDesc}");
+        Console.WriteLine($"Barcode Digits     : {address.BarcodeDigits}");
+        Console.WriteLine($"Carrier Route      : {address.CarrierRoute}");
+        Console.WriteLine($"Congress Code      : {address.CongressCode}");
+        Console.WriteLine($"County Code        : {address.CountyCode}");
+        Console.WriteLine($"County Name        : {address.CountyName}");
+        Console.WriteLine($"Fragment House     : {address.FragmentHouse}");
+        Console.WriteLine($"Fragment Pre Dir   : {address.FragmentPreDir}");
+        Console.WriteLine($"Fragment Street    : {address.FragmentStreet}");
+        Console.WriteLine($"Fragment Suffix    : {address.FragmentSuffix}");
+        Console.WriteLine($"Fragment Post Dir  : {address.FragmentPostDir}");
+        Console.WriteLine($"Fragment Unit      : {address.FragmentUnit}");
+        Console.WriteLine($"Fragment           : {address.Fragment}");
+        Console.WriteLine($"Fragment PMB Prefix: {address.FragmentPMBPrefix}");
+        Console.WriteLine($"Fragment PMB Number: {address.FragmentPMBNumber}");
     }
+    Console.WriteLine($"Is CASS: {response.IsCASS.ToString()}");
 }
 else
 {
-    Console.WriteLine($"Error: {gbmResult.Error.ToString()}");
+    Console.WriteLine("\r\n* Error *\r\n");
+
+    Console.WriteLine($"Error Type     : {response.Error.Type}");
+    Console.WriteLine($"Error Type Code: {response.Error.TypeCode}");
+    Console.WriteLine($"Error Desc     : {response.Error.Desc}");
+    Console.WriteLine($"Error Desc Code: {response.Error.DescCode}");
 }
 ```
 
@@ -99,15 +132,51 @@ var singleInput = new GetBestMatchesSingleLineClient.GetBestMatchesSingleLineInp
     TimeoutSeconds: 15
 );
 
-AV3GbmResponse singleResult = GetBestMatchesSingleLineClient.Invoke(singleInput);
+AV3GbmResponse response = GetBestMatchesSingleLineClient.Invoke(singleInput);
 
-if (singleResult.Error is null)
+if (response.Error is null)
 {
-    Console.WriteLine(singleResult.Addresses[0].ToString());
+    Console.WriteLine("\r\n* Validation *\r\n");
+
+    foreach (Address address in response.Addresses)
+    {
+        Console.WriteLine($"Address 1          : {address.Address1}");
+        Console.WriteLine($"Address 2          : {address.Address2}");
+        Console.WriteLine($"City               : {address.City}");
+        Console.WriteLine($"State              : {address.State}");
+        Console.WriteLine($"ZIP+4              : {address.Zip}");
+        Console.WriteLine($"Is Residential     : {address.IsResidential}");
+        Console.WriteLine($"DPV                : {address.DPV}");
+        Console.WriteLine($"DPV Desc           : {address.DPVDesc}");
+        Console.WriteLine($"DPV Notes          : {address.DPVNotes}");
+        Console.WriteLine($"DPV Notes Desc     : {address.DPVNotesDesc}");
+        Console.WriteLine($"Corrections        : {address.Corrections}");
+        Console.WriteLine($"Corrections Desc   : {address.CorrectionsDesc}");
+        Console.WriteLine($"Barcode Digits     : {address.BarcodeDigits}");
+        Console.WriteLine($"Carrier Route      : {address.CarrierRoute}");
+        Console.WriteLine($"Congress Code      : {address.CongressCode}");
+        Console.WriteLine($"County Code        : {address.CountyCode}");
+        Console.WriteLine($"County Name        : {address.CountyName}");
+        Console.WriteLine($"Fragment House     : {address.FragmentHouse}");
+        Console.WriteLine($"Fragment Pre Dir   : {address.FragmentPreDir}");
+        Console.WriteLine($"Fragment Street    : {address.FragmentStreet}");
+        Console.WriteLine($"Fragment Suffix    : {address.FragmentSuffix}");
+        Console.WriteLine($"Fragment Post Dir  : {address.FragmentPostDir}");
+        Console.WriteLine($"Fragment Unit      : {address.FragmentUnit}");
+        Console.WriteLine($"Fragment           : {address.Fragment}");
+        Console.WriteLine($"Fragment PMB Prefix: {address.FragmentPMBPrefix}");
+        Console.WriteLine($"Fragment PMB Number: {address.FragmentPMBNumber}");
+    }
+    Console.WriteLine($"Is CASS: {response.IsCASS.ToString()}");
 }
 else
 {
-    Console.WriteLine($"Error: {singleResult.Error.Desc}");
+    Console.WriteLine("\r\n* Error *\r\n");
+
+    Console.WriteLine($"Error Type     : {response.Error.Type}");
+    Console.WriteLine($"Error Type Code: {response.Error.TypeCode}");
+    Console.WriteLine($"Error Desc     : {response.Error.Desc}");
+    Console.WriteLine($"Error Desc Code: {response.Error.DescCode}");
 }
 ```
 
@@ -143,15 +212,32 @@ var cszInput = new ValidateCityStateZipClient.ValidateCityStateZipInput(
     TimeoutSeconds: 15
 );
 
-Av3CszResponse cszResult = ValidateCityStateZipClient.Invoke(cszInput);
+Av3CszResponse response = ValidateCityStateZipClient.Invoke(cszInput);
 
-if (cszResult.Error is null)
+if (response.Error is null)
 {
-    Console.WriteLine(cszResult.ToString());
+    Console.WriteLine("\r\n* Validation *\r\n");
+
+    Console.WriteLine($"City                          : {response.CityStateZip.City}");
+    Console.WriteLine($"State                         : {response.CityStateZip.State}");
+    Console.WriteLine($"ZIP Code                      : {response.CityStateZip.Zip}");
+    Console.WriteLine($"General Delivery Service      : {response.CityStateZip.GeneralDeliveryService}");
+    Console.WriteLine($"Street Service                : {response.CityStateZip.StreetService}");
+    Console.WriteLine($"PO Box Service                : {response.CityStateZip.POBoxService}");
+    Console.WriteLine($"PO Box Range Low              : {response.CityStateZip.POBoxRangeLow}");
+    Console.WriteLine($"PO Box Range High             : {response.CityStateZip.POBoxRangeHigh}");
+    Console.WriteLine($"Rural Route / Highway Contract: {response.CityStateZip.RRHCService}");
+    Console.WriteLine($"Urbanization Service          : {response.CityStateZip.UrbanizationService}");
+    Console.WriteLine($"Is Unique ZIP Code            : {response.CityStateZip.IsUniqueZipCode}");
 }
 else
 {
-    Console.WriteLine($"Error: {cszResult.Error.ToString()}");
+    Console.WriteLine("\r\n* Error *\r\n");
+
+    Console.WriteLine($"Error Type     : {response.Error.Type}");
+    Console.WriteLine($"Error Type Code: {response.Error.TypeCode}");
+    Console.WriteLine($"Error Desc     : {response.Error.Desc}");
+    Console.WriteLine($"Error Desc Code: {response.Error.DescCode}");
 }
 ```
 
@@ -194,14 +280,32 @@ var secInput = new GetSecondaryNumbersClient.GetSecondaryNumbersInput(
     TimeoutSeconds: 15
 );
 
-Av3GsnResponse secResult = GetSecondaryNumbersClient.Invoke(secInput);
+Av3GsnResponse response = GetSecondaryNumbersClient.Invoke(secInput);
 
-if (secResult.Error is null)
+if (response.Error is null)
 {
-    Console.WriteLine($"Secondary numbers: {secResult.ToString()}");
+    Console.WriteLine("\r\n* Validation *\r\n");
+
+    Console.WriteLine($"Address          : {response.Address1}");
+    Console.WriteLine($"City             : {response.City}");
+    Console.WriteLine($"State            : {response.State}");
+    Console.WriteLine($"ZIP+4            : {response.Zip}");
+    Console.WriteLine($"Total Unit Count : {response.TotalCount.ToString()}");
+    Console.WriteLine($"Secondary Numbers:");
+
+
+    foreach (string unit in response.SecondaryNumbers)
+    {
+        Console.WriteLine($"                  {unit}");
+    }
 }
 else
 {
-    Console.WriteLine($"Error: {secResult.Error.ToString()}");
+    Console.WriteLine("\r\n* Error *\r\n");
+
+    Console.WriteLine($"Error Type     : {response.Error.Type}");
+    Console.WriteLine($"Error Type Code: {response.Error.TypeCode}");
+    Console.WriteLine($"Error Desc     : {response.Error.Desc}");
+    Console.WriteLine($"Error Desc Code: {response.Error.DescCode}");
 }
 ```

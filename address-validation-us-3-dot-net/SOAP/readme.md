@@ -29,63 +29,57 @@ string state        = "CA";
 string zip          = "93101";
 string licenseKey   = "YOUR_LICENSE_KEY_HERE";
 
-try
-{
-    // (3) Call the service
-    var response = av3.GetBestMatches(
-        businessName,
-        address1,
-        address2,
-        city,
-        state,
-        zip,
-        licenseKey
-    );
 
-    // (4) Print to console (or process however you like)
-    if (response.Error != null)
-    {
-	    Console.WriteLine("GetBestMatches Error:");
-	    Console.WriteLine($"  Type    : {response.Error.Type}");
-	    Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
-	    Console.WriteLine($"  Desc    : {response.Error.Desc}");
-	    Console.WriteLine($"  DescCode: {response.Error.DescCode}");
-    }
-    else
-    {
-	    int matchCount = 1;
-        foreach (var addr in response.Addresses)
-        {
-            Console.WriteLine($"  --- Match #{matchCount++} ---");
-            Console.WriteLine($"   Address1      : {addr.Address1}");
-            Console.WriteLine($"   Address2      : {addr.Address2}");
-            Console.WriteLine($"   City           : {addr.City}");
-            Console.WriteLine($"   State          : {addr.State}");
-            Console.WriteLine($"   Zip            : {addr.Zip}");
-            Console.WriteLine($"   IsResidential : {addr.is}");
-            Console.WriteLine($"   DPV            : {addr.DPV} ({addr.DPVDesc})");
-            Console.WriteLine($"   DPVNotes      : {addr.DPVNotes} ({addr.DPVNotesDesc})");
-            Console.WriteLine($"   Corrections    : {addr.Corrections} ({addr.CorrectionsDesc})");
-            Console.WriteLine($"   BarcodeDigits : {addr.BarcodeDigits}");
-            Console.WriteLine($"   CarrierRoute   : {addr.CarrierRoute}");
-            Console.WriteLine($"   CongressCode  : {addr.CongressCode}");
-            Console.WriteLine($"   CountyCode   : {addr.CountyCode}");
-            Console.WriteLine($"   CountyName    : {addr.CountyName}");
-            Console.WriteLine($"   FragmentHouse : {addr.FragmentHouse}");
-            Console.WriteLine($"   FragmentPreDir : {addr.FragmentPreDir}");
-            Console.WriteLine($"   FragmentStreet : {addr.FragmentStreet}");
-            Console.WriteLine($"   FragmentSuffix : {addr.FragmentSuffix}");
-            Console.WriteLine($"   FragmentPostDir: {addr.FragmentPostDir}");
-            Console.WriteLine($"   FragmentUnit  : {addr.FragmentUnit}");
-            Console.WriteLine($"   Fragment       : {addr.Fragment}");
-            Console.WriteLine($"   FragmentPMBPrefix: {addr.FragmentPMBPrefix}");
-            Console.WriteLine($"   FragmentPMBNumber: {addr.FragmentPMBNumber}");
-        }
-    }
-}
-catch (Exception ex)
+// (3) Call the service
+var response = av3.GetBestMatches(
+    businessName,
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    licenseKey
+);
+
+// (4) Print to console (or process however you like)
+if (response.Error != null)
 {
-    Console.WriteLine($"Exception: {ex.Message}");
+	Console.WriteLine("GetBestMatches Error:");
+	Console.WriteLine($"  Type    : {response.Error.Type}");
+	Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
+	Console.WriteLine($"  Desc    : {response.Error.Desc}");
+	Console.WriteLine($"  DescCode: {response.Error.DescCode}");
+}
+else
+{
+	int matchCount = 1;
+    foreach (var addr in response.Addresses)
+    {
+        Console.WriteLine($"  --- Match #{matchCount++} ---");
+        Console.WriteLine($"   Address1      : {addr.Address1}");
+        Console.WriteLine($"   Address2      : {addr.Address2}");
+        Console.WriteLine($"   City           : {addr.City}");
+        Console.WriteLine($"   State          : {addr.State}");
+        Console.WriteLine($"   Zip            : {addr.Zip}");
+        Console.WriteLine($"   IsResidential : {addr.is}");
+        Console.WriteLine($"   DPV            : {addr.DPV} ({addr.DPVDesc})");
+        Console.WriteLine($"   DPVNotes      : {addr.DPVNotes} ({addr.DPVNotesDesc})");
+        Console.WriteLine($"   Corrections    : {addr.Corrections} ({addr.CorrectionsDesc})");
+        Console.WriteLine($"   BarcodeDigits : {addr.BarcodeDigits}");
+        Console.WriteLine($"   CarrierRoute   : {addr.CarrierRoute}");
+        Console.WriteLine($"   CongressCode  : {addr.CongressCode}");
+        Console.WriteLine($"   CountyCode   : {addr.CountyCode}");
+        Console.WriteLine($"   CountyName    : {addr.CountyName}");
+        Console.WriteLine($"   FragmentHouse : {addr.FragmentHouse}");
+        Console.WriteLine($"   FragmentPreDir : {addr.FragmentPreDir}");
+        Console.WriteLine($"   FragmentStreet : {addr.FragmentStreet}");
+        Console.WriteLine($"   FragmentSuffix : {addr.FragmentSuffix}");
+        Console.WriteLine($"   FragmentPostDir: {addr.FragmentPostDir}");
+        Console.WriteLine($"   FragmentUnit  : {addr.FragmentUnit}");
+        Console.WriteLine($"   Fragment       : {addr.Fragment}");
+        Console.WriteLine($"   FragmentPMBPrefix: {addr.FragmentPMBPrefix}");
+        Console.WriteLine($"   FragmentPMBNumber: {addr.FragmentPMBNumber}");
+    }
 }
 ```
 
@@ -98,7 +92,7 @@ Takes a single line of address information as the input and returns the best add
 ## Library Usage
 
 ```
- // (1) Instantiate the service wrapper
+// (1) Instantiate the service wrapper
 var av3 = new GetBestMatchesSingleLineValidation();
 
 // (2) Provide your input data
@@ -106,59 +100,52 @@ string businessName = "";
 string fullAddress  = "136 West Canon Perdido St Suite D, Santa Barbara, CA 93101";
 string licenseKey   = "YOUR_LICENSE_KEY_HERE";
 
-try
-{
-    // (3) Call GetBestMatchesSingleLine
-    var response = av3.GetBestMatchesSingleLine(
-        businessName,
-        fullAddress,
-        licenseKey
-    );
+// (3) Call GetBestMatchesSingleLine
+var response = av3.GetBestMatchesSingleLine(
+    businessName,
+    fullAddress,
+    licenseKey
+);
 
-    // (4) Print to console (or process however you like)
-    if (response.Error != null)
-    {
-	    Console.WriteLine("GetBestMatchesSingleLine Error:");
-	    Console.WriteLine($"  Type    : {response.Error.Type}");
-	    Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
-	    Console.WriteLine($"  Desc    : {response.Error.Desc}");
-	    Console.WriteLine($"  DescCode: {response.Error.DescCode}");
-    }
-    else
-    {
-	    int matchCount = 1;
-        foreach (var addr in response.Addresses)
-        {
-            Console.WriteLine($"  --- Match #{matchCount++} ---");
-            Console.WriteLine($"   Address1      : {addr.Address1}");
-            Console.WriteLine($"   Address2      : {addr.Address2}");
-            Console.WriteLine($"   City           : {addr.City}");
-            Console.WriteLine($"   State          : {addr.State}");
-            Console.WriteLine($"   Zip            : {addr.Zip}");
-            Console.WriteLine($"   IsResidential : {addr.is}");
-            Console.WriteLine($"   DPV            : {addr.DPV} ({addr.DPVDesc})");
-            Console.WriteLine($"   DPVNotes      : {addr.DPVNotes} ({addr.DPVNotesDesc})");
-            Console.WriteLine($"   Corrections    : {addr.Corrections} ({addr.CorrectionsDesc})");
-            Console.WriteLine($"   BarcodeDigits : {addr.BarcodeDigits}");
-            Console.WriteLine($"   CarrierRoute   : {addr.CarrierRoute}");
-            Console.WriteLine($"   CongressCode  : {addr.CongressCode}");
-            Console.WriteLine($"   CountyCode   : {addr.CountyCode}");
-            Console.WriteLine($"   CountyName    : {addr.CountyName}");
-            Console.WriteLine($"   FragmentHouse : {addr.FragmentHouse}");
-            Console.WriteLine($"   FragmentPreDir : {addr.FragmentPreDir}");
-            Console.WriteLine($"   FragmentStreet : {addr.FragmentStreet}");
-            Console.WriteLine($"   FragmentSuffix : {addr.FragmentSuffix}");
-            Console.WriteLine($"   FragmentPostDir: {addr.FragmentPostDir}");
-            Console.WriteLine($"   FragmentUnit  : {addr.FragmentUnit}");
-            Console.WriteLine($"   Fragment       : {addr.Fragment}");
-            Console.WriteLine($"   FragmentPMBPrefix: {addr.FragmentPMBPrefix}");
-            Console.WriteLine($"   FragmentPMBNumber: {addr.FragmentPMBNumber}");
-        }
-    }
-}
-catch (Exception ex)
+// (4) Print to console (or process however you like)
+if (response.Error != null)
 {
-    Console.WriteLine($"Exception: {ex.Message}");
+	Console.WriteLine("GetBestMatchesSingleLine Error:");
+	Console.WriteLine($"  Type    : {response.Error.Type}");
+	Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
+	Console.WriteLine($"  Desc    : {response.Error.Desc}");
+	Console.WriteLine($"  DescCode: {response.Error.DescCode}");
+}
+else
+{
+	int matchCount = 1;
+    foreach (var addr in response.Addresses)
+    {
+        Console.WriteLine($"  --- Match #{matchCount++} ---");
+        Console.WriteLine($"   Address1      : {addr.Address1}");
+        Console.WriteLine($"   Address2      : {addr.Address2}");
+        Console.WriteLine($"   City           : {addr.City}");
+        Console.WriteLine($"   State          : {addr.State}");
+        Console.WriteLine($"   Zip            : {addr.Zip}");
+        Console.WriteLine($"   IsResidential : {addr.is}");
+        Console.WriteLine($"   DPV            : {addr.DPV} ({addr.DPVDesc})");
+        Console.WriteLine($"   DPVNotes      : {addr.DPVNotes} ({addr.DPVNotesDesc})");
+        Console.WriteLine($"   Corrections    : {addr.Corrections} ({addr.CorrectionsDesc})");
+        Console.WriteLine($"   BarcodeDigits : {addr.BarcodeDigits}");
+        Console.WriteLine($"   CarrierRoute   : {addr.CarrierRoute}");
+        Console.WriteLine($"   CongressCode  : {addr.CongressCode}");
+        Console.WriteLine($"   CountyCode   : {addr.CountyCode}");
+        Console.WriteLine($"   CountyName    : {addr.CountyName}");
+        Console.WriteLine($"   FragmentHouse : {addr.FragmentHouse}");
+        Console.WriteLine($"   FragmentPreDir : {addr.FragmentPreDir}");
+        Console.WriteLine($"   FragmentStreet : {addr.FragmentStreet}");
+        Console.WriteLine($"   FragmentSuffix : {addr.FragmentSuffix}");
+        Console.WriteLine($"   FragmentPostDir: {addr.FragmentPostDir}");
+        Console.WriteLine($"   FragmentUnit  : {addr.FragmentUnit}");
+        Console.WriteLine($"   Fragment       : {addr.Fragment}");
+        Console.WriteLine($"   FragmentPMBPrefix: {addr.FragmentPMBPrefix}");
+        Console.WriteLine($"   FragmentPMBNumber: {addr.FragmentPMBNumber}");
+    }
 }
 ```
 
@@ -180,45 +167,38 @@ string state      = "CA";
 string zip        = "93101";
 string licenseKey = "YOUR_LICENSE_KEY_HERE";
 
-try
-{
-    // (3) Call ValidateCityStateZip
-    var response = av3.ValidateCityStateZip(
-        city,
-        state,
-        zip,
-        licenseKey
-    );
+// (3) Call ValidateCityStateZip
+var response = av3.ValidateCityStateZip(
+    city,
+    state,
+    zip,
+    licenseKey
+);
 
-    // (4) Check for errors
-    if (response.Error != null)
-    {
-        Console.WriteLine("ValidateCityStateZip Error:");
-        Console.WriteLine($"  Type    : {response.Error.Type}");
-        Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
-        Console.WriteLine($"  Desc    : {response.Error.Desc}");
-        Console.WriteLine($"  DescCode: {response.Error.DescCode}");
-    }
-    else
-    {
-        // (5) Print the validated/corrected city, state, and zip
-        Console.WriteLine("ValidateCityStateZip Result:");
-        Console.WriteLine($"  City : {response.City}");
-        Console.WriteLine($"  State: {response.State}");
-        Console.WriteLine($"  Zip  : {response.Zip}");
-        Console.WriteLine($"  Zip  : {response.GeneralDeliveryService}");
-        Console.WriteLine($"  Zip  : {response.POBoxService}");
-        Console.WriteLine($"  Zip  : {response.StreetService}");
-        Console.WriteLine($"  Zip  : {response.RRHCService}");
-        Console.WriteLine($"  Zip  : {response.UrbanizationService}");
-        Console.WriteLine($"  Zip  : {response.POBoxRangeLow}");
-        Console.WriteLine($"  Zip  : {response.POBoxRangeHigh}");
-        Console.WriteLine($"  Zip  : {response.IsUniqueZipCode}");
-    }
-}
-catch (Exception ex)
+// (4) Check for errors
+if (response.Error != null)
 {
-    Console.WriteLine($"Exception: {ex.Message}");
+    Console.WriteLine("ValidateCityStateZip Error:");
+    Console.WriteLine($"  Type    : {response.Error.Type}");
+    Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
+    Console.WriteLine($"  Desc    : {response.Error.Desc}");
+    Console.WriteLine($"  DescCode: {response.Error.DescCode}");
+}
+else
+{
+    // (5) Print the validated/corrected city, state, and zip
+    Console.WriteLine("ValidateCityStateZip Result:");
+    Console.WriteLine($"  City : {response.City}");
+    Console.WriteLine($"  State: {response.State}");
+    Console.WriteLine($"  Zip  : {response.Zip}");
+    Console.WriteLine($"  Zip  : {response.GeneralDeliveryService}");
+    Console.WriteLine($"  Zip  : {response.POBoxService}");
+    Console.WriteLine($"  Zip  : {response.StreetService}");
+    Console.WriteLine($"  Zip  : {response.RRHCService}");
+    Console.WriteLine($"  Zip  : {response.UrbanizationService}");
+    Console.WriteLine($"  Zip  : {response.POBoxRangeLow}");
+    Console.WriteLine($"  Zip  : {response.POBoxRangeHigh}");
+    Console.WriteLine($"  Zip  : {response.IsUniqueZipCode}");
 }
 ```
 
@@ -241,47 +221,40 @@ string state      = "CA";
 string zip        = "93101";
 string licenseKey = "YOUR_LICENSE_KEY_HERE";
 
-try
-{
-    // (3) Call GetSecondaryNumbers
-    var response = av3.GetSecondaryNumbers(
-        address,
-        city,
-        state,
-        zip,
-        licenseKey
-    );
+// (3) Call GetSecondaryNumbers
+var response = av3.GetSecondaryNumbers(
+    address,
+    city,
+    state,
+    zip,
+    licenseKey
+);
 
-    // (4) Check for errors
-    if (response.Error != null)
-    {
-	    Console.WriteLine("GetSecondaryNumbers Error:");
-	    Console.WriteLine($"  Type    : {response.Error.Type}");
-	    Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
-	    Console.WriteLine($"  Desc    : {response.Error.Desc}");
-	    Console.WriteLine($"  DescCode: {response.Error.DescCode}");
-    }
-    else
-    {
-        Console.WriteLine("Secondary Number Results:");
-        Console.WriteLine($"  Carrier Route: {response.Address1}");
-        Console.WriteLine($"  Carrier Route: {response.City}");
-        Console.WriteLine($"  Carrier Route: {response.State}");
-        Console.WriteLine($"  Carrier Route: {response.Zip}");
-        Console.WriteLine($"  Carrier Route: {response.TotalCount}");
-        Console.WriteLine("Secondary Numbers:");
-        if (response.SecondaryNumbers != null)
-        {
-	        foreach (var num in response.SecondaryNumbers)
-	        {
-		        Console.WriteLine($"  Carrier Route: {num.CarrierRoute}");
-		        Console.WriteLine($"  Secondary Number: {num.SecondaryNumber}");
-	        }
-        }
-    }
-}
-catch (Exception ex)
+// (4) Check for errors
+if (response.Error != null)
 {
-    Console.WriteLine($"Exception: {ex.Message}");
+	Console.WriteLine("GetSecondaryNumbers Error:");
+	Console.WriteLine($"  Type    : {response.Error.Type}");
+	Console.WriteLine($"  TypeCode: {response.Error.TypeCode}");
+	Console.WriteLine($"  Desc    : {response.Error.Desc}");
+	Console.WriteLine($"  DescCode: {response.Error.DescCode}");
+}
+else
+{
+    Console.WriteLine("Secondary Number Results:");
+    Console.WriteLine($"  Carrier Route: {response.Address1}");
+    Console.WriteLine($"  Carrier Route: {response.City}");
+    Console.WriteLine($"  Carrier Route: {response.State}");
+    Console.WriteLine($"  Carrier Route: {response.Zip}");
+    Console.WriteLine($"  Carrier Route: {response.TotalCount}");
+    Console.WriteLine("Secondary Numbers:");
+    if (response.SecondaryNumbers != null)
+    {
+	    foreach (var num in response.SecondaryNumbers)
+	    {
+		    Console.WriteLine($"  Carrier Route: {num.CarrierRoute}");
+		    Console.WriteLine($"  Secondary Number: {num.SecondaryNumber}");
+	    }
+    }
 }
 ```
