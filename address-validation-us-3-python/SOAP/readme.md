@@ -100,6 +100,7 @@ Takes a single line of address information as the input and returns the best add
 ## Library Usage
 
 ```
+# 1. Build the input.
 #
 # Required fields:
 #              Address
@@ -111,6 +112,56 @@ Takes a single line of address information as the input and returns the best add
 #
 # Though the API will run in any scenario, not adhering to these
 # rules can result in error responses.
+
+from get_best_matches_single_line_soap import GetBestMatchesSingleLineValidation
+
+# 2. Call the validation method.
+
+service = GetBestMatchesSingleLineValidation(license, is_live=True, timeout_ms=10000)
+
+response = service.get_best_matches_single_line(
+    business_name="",
+    address="136 West Canon Perdido St Suite D, Santa Barbara, CA 93101"
+)
+
+# 3. Inspect results.
+if not hasattr(response, 'Error'):
+    print("\n* Validation *\n")
+    for address in response.Addresses[0]:
+        print(f"Address 1          : {address.Address1}")
+        print(f"Address 2          : {address.Address2}")
+        print(f"City               : {address.City}")
+        print(f"State              : {address.State}")
+        print(f"ZIP+4              : {address.Zip}")
+        print(f"Is Residential     : {address.IsResidential}")
+        print(f"DPV                : {address.DPV}")
+        print(f"DPV Desc           : {address.DPVDesc}")
+        print(f"DPV Notes          : {address.DPVNotes}")
+        print(f"DPV Notes Desc     : {address.DPVNotesDesc}")
+        print(f"Corrections        : {address.Corrections}")
+        print(f"Corrections Desc   : {address.CorrectionsDesc}")
+        print(f"Barcode Digits     : {address.BarcodeDigits}")
+        print(f"Carrier Route      : {address.CarrierRoute}")
+        print(f"Congress Code      : {address.CongressCode}")
+        print(f"County Code        : {address.CountyCode}")
+        print(f"County Name        : {address.CountyName}")
+        print(f"Fragment House     : {address.FragmentHouse}")
+        print(f"Fragment Pre Dir   : {address.FragmentPreDir}")
+        print(f"Fragment Street    : {address.FragmentStreet}")
+        print(f"Fragment Suffix    : {address.FragmentSuffix}")
+        print(f"Fragment Post Dir  : {address.FragmentPostDir}")
+        print(f"Fragment Unit      : {address.FragmentUnit}")
+        print(f"Fragment           : {address.Fragment}")
+        print(f"Fragment PMB Prefix: {address.FragmentPMBPrefix}")
+        print(f"Fragment PMB Number: {address.FragmentPMBNumber}")
+    print(f"Is CASS: {response.IsCASS}")
+else:
+    print("\n* Error *\n")
+    err = response.Error
+    print(f"Error Type     : {err.Type}")
+    print(f"Error Type Code: {err.TypeCode}")
+    print(f"Error Desc     : {err.Desc}")
+    print(f"Error Desc Code: {err.DescCode}")
 ```
 
 # AV3 - ValidateCityStateZip
@@ -133,6 +184,41 @@ This operation will validate that a given city-state-zip validate together prope
 #
 # Though the API will run in any scenario, not adhering to these
 # rules can result in error responses.
+
+from validate_city_state_zip_soap import ValidateCityStateZipValidation
+
+# 2. Call the validation method.
+
+service = ValidateCityStateZipValidation(license, is_live=True, timeout_ms=10000)
+
+response = service.validate_city_state_zip(
+        city="Santa Barbara",
+        state="CA",
+        zip="93101"
+    )
+
+# 3. Inspect results.
+if not hasattr(response, 'Error'):
+    print("\n* Validation *\n")
+    city_state_zip = response.CityStateZip
+    print(f"City                        : {city_state_zip.City}")
+    print(f"State                       : {city_state_zip.State}")
+    print(f"ZIP                         : {city_state_zip.Zip}")             
+    print(f"GeneralDeliveryService      : {city_state_zip.GeneralDeliveryService}")
+    print(f"POBoxService                : {city_state_zip.POBoxService}")
+    print(f"StreetService               : {city_state_zip.StreetService}")
+    print(f"RRHCService                 : {city_state_zip.RRHCService}")
+    print(f"UrbanizationService         : {city_state_zip.UrbanizationService}")
+    print(f"POBoxRangeLow               : {city_state_zip.POBoxRangeLow}")
+    print(f"POBoxRangeHigh              : {city_state_zip.POBoxRangeHigh}")
+    print(f"IsUniqueZipCode             : {city_state_zip.IsUniqueZipCode}")
+else:
+    print("\n* Error *\n")
+    err = response.Error
+    print(f"Error Type     : {err.Type}")
+    print(f"Error Type Code: {err.TypeCode}")
+    print(f"Error Desc     : {err.Desc}")
+    print(f"Error Desc Code: {err.DescCode}")
 ```
 
 # AV3 - GetSecondaryNumbers
@@ -161,4 +247,33 @@ Returns parsed and validated address elements along with a list of potential sec
 #
 # Though the API will run in any scenario, not adhering to these
 # rules can result in error responses.
+
+from get_secondary_numbers_soap import GetSecondaryNumbersValidation
+
+# 2. Call the validation method.
+service = GetSecondaryNumbersValidation(license, is_live=True, timeout_ms=10000)
+
+response = service.get_secondary_numbers(
+    address="136 West Canon Perdido St",
+    city="Santa Barbara",
+    state="CA",
+    postal_code="93101"
+)
+
+# 3. Inspect results.
+if not hasattr(response, 'Error'):
+    print("\n* Validation *\n")
+    print(f"Address 1          : {response.Address1}")
+    print(f"City               : {response.City}")
+    print(f"State              : {response.State}")
+    print(f"ZIP+4              : {response.Zip}")
+    print(f"Total Count        : {response.TotalCount}")
+    print(f"SecondaryNumbers   : {', '.join(response.SecondaryNumbers.string)}")
+else:
+    print("\n* Error *\n")
+    err = response.Error
+    print(f"Error Type     : {err.Type}")
+    print(f"Error Type Code: {err.TypeCode}")
+    print(f"Error Desc     : {err.Desc}")
+    print(f"Error Desc Code: {err.DescCode}")
 ```

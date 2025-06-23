@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>address-validation-us-3-python-examples</Name>
     <RootNamespace>address-validation-us-3-python-examples</RootNamespace>
-    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +22,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="validate_city_state_zip_soap_sdk_example.py" />
+    <Compile Include="validate_city_state_zip_rest_sdk_example.py" />
+    <Compile Include="get_best_matches_single_line_rest_sdk_example.py" />
+    <Compile Include="get_best_matches_single_line_soap_sdk_example.py" />
+    <Compile Include="get_secondary_numbers_soap_sdk_example.py" />
+    <Compile Include="get_secondary_numbers_rest_sdk_example.py" />
     <Compile Include="get_best_matches_rest_sdk_example.py" />
     <Compile Include="get_best_matches_soap_sdk_example.py" />
     <Compile Include="main.py" />
@@ -34,10 +40,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env1\">
-      <Id>env1</Id>
+    <Interpreter Include="env\">
+      <Id>env</Id>
       <Version>3.13</Version>
-      <Description>env1 (Python 3.13 (64-bit))</Description>
+      <Description>env (Python 3.13 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
