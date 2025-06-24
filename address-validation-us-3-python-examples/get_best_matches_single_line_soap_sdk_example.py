@@ -6,9 +6,9 @@ sys.path.insert(0, os.path.abspath("../address-validation-us-3-python/SOAP"))
 from get_best_matches_single_line_soap import GetBestMatchesSingleLineValidation
 
 def get_best_matches_single_line_soap_sdk_go(license, is_live_key):
-    print("\n" + "-" * 51)
+    print("\n" + "-" * 61)
     print("Address Validation US 3 - GetBestMatchesSingleLine - SOAP SDK")
-    print("-" * 51)
+    print("-" * 61)
 
     print("\n* Input *\n")
     print(f"Business Name: ")

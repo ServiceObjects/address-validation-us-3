@@ -16,7 +16,7 @@ if __name__ == "__main__":
     # Trial license keys will only work on the
     # trail environments and production license
     # keys will only owork on production environments.
-    license_key = "LICENSE_KEY"
+    license_key = "LICENSE KEY"
 
     is_live_license_key = True
 
