@@ -1,5 +1,6 @@
-﻿using System;
-using AV3Service;
+﻿using AV3Service;
+using System;
+using System.Threading.Tasks;
 
 namespace address_validation_us_3_dot_net.SOAP
 {
@@ -53,7 +54,7 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <exception cref="Exception">
         /// Thrown if both primary and backup endpoints fail.
         /// </exception>
-        public CityStateZipResponse ValidateCityStateZip(
+        public async Task<CityStateZipResponse> ValidateCityStateZip(
             string city,
             string state,
             string zip,
@@ -70,12 +71,12 @@ namespace address_validation_us_3_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                var response = clientPrimary.ValidateCityStateZipAsync(
+                CityStateZipResponse response = await clientPrimary.ValidateCityStateZipAsync(
                     city,
                     state,
                     zip,
                     licenseKey
-                ).Result;
+                ).ConfigureAwait(false);
 
                 // If the response is null, or if a “fatal” Error.TypeCode == "3" came back, force a fallback
                 if (response == null || (response.Error != null && response.Error.TypeCode == "3"))
@@ -94,12 +95,12 @@ namespace address_validation_us_3_dot_net.SOAP
                     clientBackup.Endpoint.Address = new System.ServiceModel.EndpointAddress(_backupUrl);
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                    return clientBackup.ValidateCityStateZipAsync(
+                    return await clientBackup.ValidateCityStateZipAsync(
                         city,
                         state,
                         zip,
                         licenseKey
-                    ).Result;
+                    ).ConfigureAwait(false);
                 }
                 catch (Exception backupEx)
                 {

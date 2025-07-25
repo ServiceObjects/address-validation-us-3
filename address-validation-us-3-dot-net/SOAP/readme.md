@@ -18,7 +18,7 @@ Returns parsed and validated address elements including Delivery Point Validatio
 
 ```
 // (1) Instantiate the service wrapper
-var av3 = new BestMatchesValidation();
+var av3 = new BestMatchesValidation(true);
 
 // (2) Provide your input data
 string businessName = "";

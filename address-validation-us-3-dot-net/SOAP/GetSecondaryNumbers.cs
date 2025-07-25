@@ -1,5 +1,6 @@
-﻿using System;
-using AV3Service;
+﻿using AV3Service;
+using System;
+using System.Threading.Tasks;
 
 namespace address_validation_us_3_dot_net.SOAP
 {
@@ -54,7 +55,7 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <exception cref="Exception">
         /// Thrown if both primary and backup endpoints fail.
         /// </exception>
-        public SecondaryNumbersResponse GetSecondaryNumbers(
+        public async Task<SecondaryNumbersResponse> GetSecondaryNumbers(
             string address1,
             string city,
             string state,
@@ -72,13 +73,13 @@ namespace address_validation_us_3_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                var response = clientPrimary.GetSecondaryNumbersAsync(
+                SecondaryNumbersResponse response = await clientPrimary.GetSecondaryNumbersAsync(
                     address1,
                     city,
                     state,
                     zip,
                     licenseKey
-                ).Result;
+                ).ConfigureAwait(false);
 
                 // If the response is null, or if a “fatal” Error.TypeCode == "3" came back, force a fallback
                 if (response == null || (response.Error != null && response.Error.TypeCode == "3"))
@@ -95,13 +96,13 @@ namespace address_validation_us_3_dot_net.SOAP
                     clientBackup.Endpoint.Address = new System.ServiceModel.EndpointAddress(_backupUrl);
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                    return clientBackup.GetSecondaryNumbersAsync(
+                    return await clientBackup.GetSecondaryNumbersAsync(
                         address1,
                         city,
                         state,
                         zip,
                         licenseKey
-                    ).Result;
+                    ).ConfigureAwait(false);
                 }
                 catch (Exception backupEx)
                 {

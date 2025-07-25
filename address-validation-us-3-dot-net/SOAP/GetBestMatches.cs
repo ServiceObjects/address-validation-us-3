@@ -1,5 +1,6 @@
-﻿using System;
-using AV3Service;
+﻿using AV3Service;
+using System;
+using System.Threading.Tasks;
 
 namespace address_validation_us_3_dot_net.SOAP
 {
@@ -9,13 +10,17 @@ namespace address_validation_us_3_dot_net.SOAP
     /// </summary>
     public class GetBestMatchesValidation
     {
+        private const string LiveBaseUrl = "https://sws.serviceobjects.com/av3/api.svc/soap";
+        private const string BackupBaseUrl = "https://swsbackup.serviceobjects.com/av3/api.svc/soap";
+        private const string TrailBaseUrl = "https://trial.serviceobjects.com/av3/api.svc/soap";
+
         private readonly string _primaryUrl;
         private readonly string _backupUrl;
         private readonly int _timeoutMs;
         private readonly bool _isLive;
 
         /// <summary>
-        /// Reads configuration keys and initializes URLs/timeout/IsLive.
+        /// Initializes URLs/timeout/IsLive.
         /// </summary>
         public GetBestMatchesValidation(bool IsLive)
         {
@@ -23,16 +28,15 @@ namespace address_validation_us_3_dot_net.SOAP
             _timeoutMs = 10000;
             _isLive = IsLive;
 
-            // Depending on IsLive, pick the correct appSettings keys
             if (_isLive)
             {
-                _primaryUrl = "https://sws.serviceobjects.com/av3/api.svc/soap";
-                _backupUrl = "https://swsbackup.serviceobjects.com/av3/api.svc/soap";
+                _primaryUrl = LiveBaseUrl;
+                _backupUrl = BackupBaseUrl;
             }
             else
             {
-                _primaryUrl = "https://trial.serviceobjects.com/av3/api.svc/soap";
-                _backupUrl = "https://trial.serviceobjects.com/av3/api.svc/soap";
+                _primaryUrl = TrailBaseUrl;
+                _backupUrl = TrailBaseUrl;
             }
 
             if (string.IsNullOrWhiteSpace(_primaryUrl))
@@ -56,7 +60,7 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <exception cref="Exception">
         /// Thrown if both primary and backup endpoints fail.
         /// </exception>
-        public BestMatchesResponse GetBestMatches(
+        public async Task<BestMatchesResponse> GetBestMatches(
             string businessName,
             string address1,
             string address2,
@@ -76,7 +80,7 @@ namespace address_validation_us_3_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                BestMatchesResponse response = clientPrimary.GetBestMatchesAsync(
+                BestMatchesResponse response = await clientPrimary.GetBestMatchesAsync(
                     businessName,
                     address1,
                     address2,
@@ -84,7 +88,7 @@ namespace address_validation_us_3_dot_net.SOAP
                     state,
                     zip,
                     licenseKey
-                ).Result;
+                ).ConfigureAwait(false);
 
                 // If the response is null, or if a “fatal” Error.TypeCode == "3" came back, force a fallback
                 if (response == null || (response.Error != null && response.Error.TypeCode == "3"))
@@ -103,7 +107,7 @@ namespace address_validation_us_3_dot_net.SOAP
                     clientBackup.Endpoint.Address = new System.ServiceModel.EndpointAddress(_backupUrl);
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                    return clientBackup.GetBestMatchesAsync(
+                    return await clientBackup.GetBestMatchesAsync(
                         businessName,
                         address1,
                         address2,
@@ -111,7 +115,7 @@ namespace address_validation_us_3_dot_net.SOAP
                         state,
                         zip,
                         licenseKey
-                    ).Result;
+                    ).ConfigureAwait(false);
                 }
                 catch (Exception backupEx)
                 {

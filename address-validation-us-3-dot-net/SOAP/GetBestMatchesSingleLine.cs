@@ -1,5 +1,6 @@
-﻿using System;
-using AV3Service;
+﻿using AV3Service;
+using System;
+using System.Threading.Tasks;
 
 namespace address_validation_us_3_dot_net.SOAP
 {
@@ -52,7 +53,7 @@ namespace address_validation_us_3_dot_net.SOAP
         /// <exception cref="Exception">
         /// Thrown if both primary and backup endpoints fail.
         /// </exception>
-        public BestMatchesResponse GetBestMatchesSingleLine(
+        public async Task<BestMatchesResponse> GetBestMatchesSingleLine(
             string businessName,
             string fullAddress,
             string licenseKey
@@ -68,11 +69,11 @@ namespace address_validation_us_3_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                var response = clientPrimary.GetBestMatchesSingleLineAsync(
+                BestMatchesResponse response = await clientPrimary.GetBestMatchesSingleLineAsync(
                     businessName,
                     fullAddress,
                     licenseKey
-                ).Result;
+                ).ConfigureAwait(false);
 
                 // If the response is null, or if a “fatal” Error.TypeCode == "3" came back, force a fallback
                 if (response == null || (response.Error != null && response.Error.TypeCode == "3"))
@@ -91,11 +92,11 @@ namespace address_validation_us_3_dot_net.SOAP
                     clientBackup.Endpoint.Address = new System.ServiceModel.EndpointAddress(_backupUrl);
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                    return clientBackup.GetBestMatchesSingleLineAsync(
+                    return await clientBackup.GetBestMatchesSingleLineAsync(
                         businessName,
                         fullAddress,
                         licenseKey
-                    ).Result;
+                    ).ConfigureAwait(false);
                 }
                 catch (Exception backupEx)
                 {

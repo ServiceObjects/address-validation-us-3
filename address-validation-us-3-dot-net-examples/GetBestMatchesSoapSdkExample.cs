@@ -20,7 +20,6 @@ namespace address_validation_us_3_dot_net_examples
             Console.WriteLine($"Is Live      : {IsLive.ToString()}");
             Console.WriteLine($"License Key  : {LicenseKey}");
 
-
             GetBestMatchesValidation getBestMatchesValidation = new(IsLive);
             AV3Service.BestMatchesResponse response = getBestMatchesValidation.GetBestMatches(
                 "",
@@ -30,7 +29,7 @@ namespace address_validation_us_3_dot_net_examples
                 "CA",
                 "93101",
                 LicenseKey
-            );
+            ).Result;
 
             if (response.Error is null)
             {

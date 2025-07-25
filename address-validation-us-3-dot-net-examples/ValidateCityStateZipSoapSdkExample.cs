@@ -32,7 +32,7 @@ namespace address_validation_us_3_dot_net_examples
                 "CA",
                 "93101",
                 LicenseKey
-            );
+            ).Result;
 
             if (response.Error is null)
             {

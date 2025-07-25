@@ -65,6 +65,7 @@ namespace address_validation_us_3_dot_net_examples
                     Console.WriteLine($"Fragment           : {address.Fragment}");
                     Console.WriteLine($"Fragment PMB Prefix: {address.FragmentPMBPrefix}");
                     Console.WriteLine($"Fragment PMB Number: {address.FragmentPMBNumber}");
+                    Console.WriteLine("\r\n");
                 }
                 Console.WriteLine($"Is CASS: {response.IsCASS.ToString()}");
             }

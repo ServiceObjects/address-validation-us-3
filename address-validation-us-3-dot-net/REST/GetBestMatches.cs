@@ -23,14 +23,14 @@ namespace address_validation_us_3_dot_net.REST
         /// <returns>Deserialized <see cref="GBMResponse"/>.</returns>
         public static GBMResponse Invoke(GetBestMatchesInput input)
         {
+            //Use query string parameters so missing/options fields don't break
+            //the URL as path parameters would.
             var url = BuildUrl(input, input.IsLive ? LiveBaseUrl : TrialBaseUrl);
             GBMResponse response = Helper.HttpGet<GBMResponse>(url, input.TimeoutSeconds);
 
             // Fallback on error payload in live mode
             if (input.IsLive && !IsValid(response))
             {
-                //Use querystring parameters so missing/options fields don't break
-                //the URL as path parameters would.
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GBMResponse fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
                 return IsValid(fallbackResponse) ? fallbackResponse : response;

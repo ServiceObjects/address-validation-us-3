@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Runtime.Serialization;
 
 namespace address_validation_us_3_dot_net.REST
 {
