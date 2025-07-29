@@ -39,7 +39,7 @@ var response = av3.GetBestMatches(
     state,
     zip,
     licenseKey
-);
+).Result;
 
 // (4) Print to console (or process however you like)
 if (response.Error != null)
@@ -105,7 +105,7 @@ var response = av3.GetBestMatchesSingleLine(
     businessName,
     fullAddress,
     licenseKey
-);
+).Result;
 
 // (4) Print to console (or process however you like)
 if (response.Error != null)
@@ -173,7 +173,7 @@ var response = av3.ValidateCityStateZip(
     state,
     zip,
     licenseKey
-);
+).Result;
 
 // (4) Check for errors
 if (response.Error != null)
@@ -228,7 +228,7 @@ var response = av3.GetSecondaryNumbers(
     state,
     zip,
     licenseKey
-);
+).Result;
 
 // (4) Check for errors
 if (response.Error != null)

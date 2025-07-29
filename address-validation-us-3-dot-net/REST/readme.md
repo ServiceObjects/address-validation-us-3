@@ -46,7 +46,7 @@ var gbmInput = new GetBestMatchesClient.GetBestMatchesInput(
     City:         "Santa Barbara",
     State:        "CA",
     PostalCode:   "93101",
-    LicenseKey:   "YOUR_LICENSE_KEY",
+    LicenseKey:   "YOUR_LICENSE_KEY_HERE",
     IsLive:       true,    // production endpoints with fallback
     TimeoutSeconds: 15
 );
@@ -127,7 +127,7 @@ using address_validation_us_3_dot_net.REST;
 var singleInput = new GetBestMatchesSingleLineClient.GetBestMatchesSingleLineInput(
     BusinessName: "",
     Address:      "136 West Canon Perdido St Suite D, Santa Barbara, CA 93101",
-    LicenseKey:   "YOUR_LICENSE_KEY",
+    LicenseKey:   "YOUR_LICENSE_KEY_HERE",
     IsLive:       true,
     TimeoutSeconds: 15
 );
@@ -207,7 +207,7 @@ var cszInput = new ValidateCityStateZipClient.ValidateCityStateZipInput(
     City:           "Santa Barbara",
     State:          "CA",
     Zip:            "93101",
-    LicenseKey:     "YOUR_LICENSE_KEY",
+    LicenseKey:     "YOUR_LICENSE_KEY_HERE",
     IsLive:         true,
     TimeoutSeconds: 15
 );
@@ -275,7 +275,7 @@ var secInput = new GetSecondaryNumbersClient.GetSecondaryNumbersInput(
     City:          "Santa Barbara",
     State:         "CA",
     PostalCode:    "93101",
-    LicenseKey:    "YOUR_LICENSE_KEY",
+    LicenseKey:    "YOUR_LICENSE_KEY_HERE",
     IsLive:        true,
     TimeoutSeconds: 15
 );

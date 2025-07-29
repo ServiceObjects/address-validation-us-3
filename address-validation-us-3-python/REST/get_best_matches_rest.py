@@ -45,7 +45,7 @@ def get_best_matches(business_name: str,
         is_live (bool): True for production endpoints, False for trial URL.
 
     Returns:
-        dict: Parsed JSON response with address addresss or error info.
+        dict: Parsed JSON response with address addresss or error details.
     """
 
     # Prepare query parameters for AV3 API
@@ -65,6 +65,7 @@ def get_best_matches(business_name: str,
     # Attempt primary (or trial) endpoint first
     try:
         response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
         data = response.json()
 
         # If API returned an error in JSON payload, trigger fallback
@@ -90,13 +91,14 @@ def get_best_matches(business_name: str,
             try:
                 # Fallback to backup URL on network failure
                 response = requests.get(backup_url, params=params, timeout=10)
+                response.raise_for_status()
                 data = response.json()
                 if 'Error' in data:
-                    raise RuntimeError(f"AV3 backup error: {data['Error']}")
+                    raise RuntimeError(f"AV3 backup error: {data['Error']}") from req_exc
                 return data
             except Exception as backup_exc:
                 # Both primary and backup failed; escalate
                 raise RuntimeError("AV3 service unreachable on both endpoints") from backup_exc
         else:
             # In trial mode, propagate the network exception
-            raise
+            raise RuntimeError(f"AV3 trial error: {str(req_exc)}") from req_exc

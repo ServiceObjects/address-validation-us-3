@@ -5,8 +5,9 @@ from suds.sudsobject import Object
 class GetBestMatchesValidation:
     def __init__(self, license_key: str, is_live: bool, timeout_ms: int = 10000):
         """
-        :param is_live: whether to use live or trial endpoints
-        :param timeout_ms: SOAP call timeout in milliseconds
+        license_key: Service Objects Address Validation US - 3 license key.
+        is_live: whether to use live or trial endpoints
+        timeout_ms: SOAP call timeout in milliseconds
         """
         self._timeout_s = timeout_ms / 1000.0
         self._is_live = is_live
@@ -51,8 +52,8 @@ class GetBestMatchesValidation:
         # Attempt primary
         try:
             client = Client(self._primary_wsdl, timeout=self._timeout_s)
+
             # Override endpoint URL if needed:
-            # client.set_options(location=self._primary_wsdl.replace('?wsdl','/soap'))
             response = client.service.GetBestMatches(**call_kwargs)
 
             # If response is None or fatal error code, trigger fallback

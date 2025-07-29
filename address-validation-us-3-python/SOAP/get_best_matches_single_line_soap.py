@@ -5,8 +5,9 @@ from suds.sudsobject import Object
 class GetBestMatchesSingleLineValidation:
     def __init__(self, license_key: str, is_live: bool, timeout_ms: int = 10000):
         """
-        :param is_live: whether to use live or trial endpoints
-        :param timeout_ms: SOAP call timeout in milliseconds
+        license_key: Service Objects Address Validation US - 3 license key.
+        is_live: whether to use live or trial endpoints
+        timeout_ms: SOAP call timeout in milliseconds
         """
         self._timeout_s = timeout_ms / 1000.0
         self._is_live = is_live
