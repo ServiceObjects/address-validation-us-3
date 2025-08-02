@@ -40,9 +40,10 @@ namespace address_validation_us_3_dot_net.SOAP
             }
 
             if (string.IsNullOrWhiteSpace(_primaryUrl))
-                throw new InvalidOperationException("Primary URL not set. Check appSettings (AV3_PRIMARY...).");
+                throw new InvalidOperationException("Primary URL not set. Check endpoint configuration.");
+
             if (string.IsNullOrWhiteSpace(_backupUrl))
-                throw new InvalidOperationException("Backup URL not set. Check appSettings (AV3_BACKUP...).");
+                throw new InvalidOperationException("Backup URL not set. Check endpoint configuration.");
         }
 
         /// <summary>
