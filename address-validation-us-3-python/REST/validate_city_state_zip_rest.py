@@ -37,6 +37,10 @@ def validate_city_state_zip(city: str,
 
     Returns:
         dict: Parsed JSON response with location or error info.
+
+    Raises:
+        RuntimeError: If the API returns an error payload.
+        requests.RequestException: On network/HTTP failures (trial mode).
     """
 
     # Prepare query parameters for AV3 API

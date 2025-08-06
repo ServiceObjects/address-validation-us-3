@@ -29,7 +29,7 @@ def get_best_matches_rest_sdk_go(license, is_live_key):
             state="CA",
             postal_code="93101",
             license_key=license, 
-            is_live=True
+            is_live=is_live_key
         )
 
         if not response.get('Error'):

@@ -21,7 +21,7 @@ def get_best_matches_single_line_rest_sdk_go(license, is_live_key):
             business_name="",
             address="136 West Canon Perdido St Suite D, Santa Barbara, CA 93101",
             license_key=license, 
-            is_live=True
+            is_live=is_live_key
         )
 
         if not response.get('Error'):

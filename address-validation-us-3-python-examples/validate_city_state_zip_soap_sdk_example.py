@@ -17,8 +17,8 @@ def validate_city_state_zip_soap_sdk_go(license, is_live_key):
     print(f"Is Live    : {is_live_key}")
     print(f"License Key: {license}")
 
-    service = ValidateCityStateZipValidation(license, is_live=True, timeout_ms=10000)
     try:
+        service = ValidateCityStateZipValidation(license, is_live=is_live_key, timeout_ms=10000)
         response = service.validate_city_state_zip(
             city="Santa Barbara",
             state="CA",

@@ -5,9 +5,9 @@ from suds.sudsobject import Object
 class GetSecondaryNumbersValidation:
     def __init__(self, license_key: str, is_live: bool, timeout_ms: int = 10000):
         """
-        license_key: Service Objects Address Validation US - 3 license key.
-        is_live: whether to use live or trial endpoints
-        timeout_ms: SOAP call timeout in milliseconds
+        license_key (str): Service Objects Address Validation US - 3 license key.
+        is_live (bool): whether to use live or trial endpoints
+        timeout_ms (int): SOAP call timeout in milliseconds
         """
         self._timeout_s = timeout_ms / 1000.0
         self._is_live = is_live
@@ -33,8 +33,8 @@ class GetSecondaryNumbersValidation:
         """
         Calls GetSecondaryNumbers on the primary endpoint; on None response,
         WebFault, or Error.TypeCode == '3' falls back to the backup endpoint.
-        :returns: the suds response object
-        :raises RuntimeError: if both endpoints fail
+        returns: the suds response object
+        raises RuntimeError: if both endpoints fail
         """
         # Common kwargs for both calls
         call_kwargs = dict(

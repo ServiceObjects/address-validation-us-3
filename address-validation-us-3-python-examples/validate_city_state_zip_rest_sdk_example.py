@@ -23,7 +23,7 @@ def validate_city_state_zip_rest_sdk_go(license, is_live_key):
             state="CA",
             zip="93101",
             license_key=license, 
-            is_live=True
+            is_live=is_live_key
         )
 
         if not response.get('Error'):

@@ -22,7 +22,6 @@ primary_url = 'https://sws.serviceobjects.com/AV3/api.svc/GetBestMatchesJson?'
 backup_url = 'https://swsbackup.serviceobjects.com/AV3/api.svc/GetBestMatchesJson?'
 trial_url = 'https://trial.serviceobjects.com/AV3/api.svc/GetBestMatchesJson?'
 
-
 def get_best_matches(business_name: str,
                    address: str,
                    address_2: str,
@@ -46,6 +45,10 @@ def get_best_matches(business_name: str,
 
     Returns:
         dict: Parsed JSON response with address addresss or error details.
+
+    Raises:
+        RuntimeError: If the API returns an error payload.
+        requests.RequestException: On network/HTTP failures (trial mode).
     """
 
     # Prepare query parameters for AV3 API
@@ -75,6 +78,7 @@ def get_best_matches(business_name: str,
                 # Try backup URL when live
                 response = requests.get(backup_url, params=params, timeout=10)
                 data = response.json()
+
                 # If still error, propagate exception
                 if 'Error' in data:
                     raise RuntimeError(f"AV3 service error: {data['Error']}")

@@ -18,8 +18,9 @@ def get_secondary_numbers_soap_sdk_go(license, is_live_key):
     print(f"Is Live    : {is_live_key}")
     print(f"License Key: {license}")
 
-    service = GetSecondaryNumbersValidation(license, is_live=True, timeout_ms=10000)
+    
     try:
+        service = GetSecondaryNumbersValidation(license, is_live=is_live_key, timeout_ms=10000)
         response = service.get_secondary_numbers(
             address="136 West Canon Perdido St",
             city="Santa Barbara",

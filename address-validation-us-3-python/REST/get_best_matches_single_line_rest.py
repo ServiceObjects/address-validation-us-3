@@ -36,6 +36,10 @@ def get_best_matches_single_line(business_name: str,
 
     Returns:
         dict: Parsed JSON response with address addresss or error info.
+
+    Raises:
+        RuntimeError: If the API returns an error payload.
+        requests.RequestException: On network/HTTP failures (trial mode).
     """
 
     # Prepare query parameters for AV3 API

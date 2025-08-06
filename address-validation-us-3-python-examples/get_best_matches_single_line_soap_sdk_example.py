@@ -16,8 +16,8 @@ def get_best_matches_single_line_soap_sdk_go(license, is_live_key):
     print(f"Is Live      : {is_live_key}")
     print(f"License Key  : {license}")
 
-    service = GetBestMatchesSingleLineValidation(license, is_live=True, timeout_ms=10000)
     try:
+        service = GetBestMatchesSingleLineValidation(license, is_live=is_live_key, timeout_ms=10000)
         response = service.get_best_matches_single_line(
             business_name="",
             address="136 West Canon Perdido St Suite D, Santa Barbara, CA 93101"
