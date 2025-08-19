@@ -11,7 +11,8 @@
     <OutputPath>.</OutputPath>
     <Name>address-validation-us-3-python-examples</Name>
     <RootNamespace>address-validation-us-3-python-examples</RootNamespace>
-    <InterpreterId>MSBuild|env|C:\DevFiles\GH1\address-validation-us-3\address-validation-us-3-python\address-validation-us-3-python.pyproj</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,9 +39,6 @@
       <Project>{1ff7e5ec-37b2-419c-a031-364169e42dd5}</Project>
       <Private>True</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="MSBuild|env|C:\DevFiles\GH1\address-validation-us-3\address-validation-us-3-python\address-validation-us-3-python.pyproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

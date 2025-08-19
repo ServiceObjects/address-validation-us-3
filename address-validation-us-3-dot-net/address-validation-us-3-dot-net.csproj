@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>address_validation_us_3_dot_net</RootNamespace>
     <Nullable>enable</Nullable>
   </PropertyGroup>
