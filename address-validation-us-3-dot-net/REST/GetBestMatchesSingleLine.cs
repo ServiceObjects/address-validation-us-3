@@ -32,7 +32,7 @@ namespace address_validation_us_3_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GBMResponse fallbackResponse = Helper.HttpGet<GBMResponse>(fallbackUrl, input.TimeoutSeconds);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
             return response;
         }
@@ -54,7 +54,7 @@ namespace address_validation_us_3_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GBMResponse fallbackResponse = await Helper.HttpGetAsync<GBMResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
             return response;
         }

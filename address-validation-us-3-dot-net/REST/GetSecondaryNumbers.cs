@@ -34,7 +34,7 @@ namespace address_validation_us_3_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GSNResponse fallbackResponse = Helper.HttpGet<GSNResponse>(fallbackUrl, input.TimeoutSeconds);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
 
             return response;
@@ -54,7 +54,7 @@ namespace address_validation_us_3_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GSNResponse fallbackResponse = await Helper.HttpGetAsync<GSNResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
 
             return response;
