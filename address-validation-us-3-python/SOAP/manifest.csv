@@ -1,0 +1,6 @@
+Filename,RawURL
+get_best_matches_single_line_soap.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/SOAP/get_best_matches_single_line_soap.py
+get_best_matches_soap.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/SOAP/get_best_matches_soap.py
+get_secondary_numbers_soap.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/SOAP/get_secondary_numbers_soap.py
+readme.md,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/SOAP/readme.md
+validate_city_state_zip_soap.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/SOAP/validate_city_state_zip_soap.py
