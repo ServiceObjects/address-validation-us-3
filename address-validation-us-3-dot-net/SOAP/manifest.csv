@@ -1,0 +1,6 @@
+Filename,RawURL
+GetBestMatches.cs,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-dot-net/SOAP/GetBestMatches.cs
+GetBestMatchesSingleLine.cs,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-dot-net/SOAP/GetBestMatchesSingleLine.cs
+GetSecondaryNumbers.cs,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-dot-net/SOAP/GetSecondaryNumbers.cs
+readme.md,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-dot-net/SOAP/readme.md
+ValidateCityStateZip.cs,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-dot-net/SOAP/ValidateCityStateZip.cs
