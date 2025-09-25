@@ -1,0 +1,6 @@
+Filename,RawURL
+get_best_matches_rest.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/REST/get_best_matches_rest.py
+get_best_matches_single_line_rest.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/REST/get_best_matches_single_line_rest.py
+get_secondary_numbers_rest.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/REST/get_secondary_numbers_rest.py
+readme.md,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/REST/readme.md
+validate_city_state_zip_rest.py,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/master/address-validation-us-3-python/REST/validate_city_state_zip_rest.py
