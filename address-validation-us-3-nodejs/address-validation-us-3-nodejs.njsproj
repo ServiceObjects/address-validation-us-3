@@ -28,9 +28,41 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".vscode\launch.json" />
+    <Content Include="address-validation-us-3-nodejs.esproj" />
+    <Content Include="bin\Microsoft.NodejsTools.WebRole.dll" />
+    <Content Include="CHANGELOG.md" />
+    <Content Include="eslint.config.js" />
     <Content Include="getBestMatches.js" />
+    <Content Include="index.js" />
+    <Content Include="obj\Debug\address-validation-us-3-nodejs.esproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\address-validation-us-3-nodejs.esproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\address-validation-us-3-nodejs.njsproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\address-validation-us-3-nodejs.njsproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\address-validation-us-3-nodejs.njsproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\package.g.props" />
+    <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="REST\av3_response.js" />
+    <Content Include="REST\get_best_matches_rest.js" />
+    <Content Include="REST\get_best_matches_single_line_rest.js" />
+    <Content Include="REST\get_secondary_numbers_rest.js" />
+    <Content Include="REST\readme.md" />
+    <Content Include="REST\validate_city_state_zip_rest.js" />
+    <Content Include="SOAP\get_best_matches_single_line_soap.js" />
+    <Content Include="SOAP\get_best_matches_soap.js" />
+    <Content Include="SOAP\get_secondary_numbers_soap.js" />
+    <Content Include="SOAP\readme.md" />
+    <Content Include="SOAP\validate_city_state_zip_soap.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vscode\" />
+    <Folder Include="bin\" />
+    <Folder Include="obj\" />
+    <Folder Include="obj\Debug\" />
+    <Folder Include="REST\" />
+    <Folder Include="SOAP\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>
