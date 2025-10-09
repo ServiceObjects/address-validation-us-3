@@ -1,0 +1,6 @@
+Filename,RawURL
+get_best_matches_single_line_soap.js,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/refs/heads/master/address-validation-us-3-nodejs/SOAP/get_best_matches_single_line_soap.js
+get_best_matches_soap.js,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/refs/heads/master/address-validation-us-3-nodejs/SOAP/get_best_matches_soap.js
+get_secondary_numbers_soap.js,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/refs/heads/master/address-validation-us-3-nodejs/SOAP/get_secondary_numbers_soap.js
+readme.md,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/refs/heads/master/address-validation-us-3-nodejs/SOAP/readme.md
+validate_city_state_zip_soap.js,https://raw.githubusercontent.com/ServiceObjects/address-validation-us-3/refs/heads/master/address-validation-us-3-nodejs/SOAP/validate_city_state_zip_soap.js
